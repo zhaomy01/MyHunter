@@ -22,7 +22,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        fragmentManagerTran = new FragmentManagerTran(this);
         setContentView(setLayout());
 
         initViews();
