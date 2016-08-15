@@ -188,8 +188,19 @@
                 android:id="@+id/recommended_hlv_features"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="明星猎人"
+                android:textSize="13sp"
+                android:textColor="#434343"/>
+            <com.example.dllo.myhunter.view.HorizontalListView
+                android:id="@+id/star_hunter_hlv"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="20dp">
+            </com.example.dllo.myhunter.view.HorizontalListView>
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>
