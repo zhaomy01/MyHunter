@@ -9,4 +9,19 @@
     <string name="agreenment">面包猎人用户隐私协议</string>
     <string name="agreen">同意协议并注册</string>
     <string name="already">已有账号登录</string>
+    <string name="notice">系统通知</string>
+    <string name="trends">最新动态</string>
+    <string name="attention">关注</string>
+    <string name="fans">粉丝</string>
+    <string name="integral">积分</string>
+    <string name="become">成为猎人</string>
+    <string name="travels">游记故事集</string>
+    <string name="invite">邀请返利</string>
+    <string name="service">面包客服</string>
+    <string name="help">帮助中心</string>
+    <string name="order">订单中心</string>
+    <string name="mycollect">我的收藏</string>
+    <string name="mycard">我的优先劵</string>
+    <string name="myappraise">我的评价</string>
+    <string name="hotsearch">热门搜索</string>
 </resources>
