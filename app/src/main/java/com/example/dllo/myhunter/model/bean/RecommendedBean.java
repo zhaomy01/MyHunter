@@ -112,6 +112,7 @@ public class RecommendedBean {
 
             public static class HunListBean {
                 private double goodcomment_rate;
+                private String product_image;
                 private String name;
                 private String avatar_s;
                 private String comment_text;
@@ -120,6 +121,14 @@ public class RecommendedBean {
                 private int product_id;
                 private long id;
                 private int product_title;
+
+                public String getProduct_image() {
+                    return product_image;
+                }
+
+                public void setProduct_image(String product_image) {
+                    this.product_image = product_image;
+                }
 
                 public double getGoodcomment_rate() {
                     return goodcomment_rate;
