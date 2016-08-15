@@ -24,7 +24,7 @@ public class RecommendedFragment extends AbsBaseFragment {
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
     private RecommendedHorizontalAdapter blockbusterAdapter,lineAdapter,firstAdapter,featuresAdapter;
-    private LinearLayout pointContainer;//小圆点容器
+    private LinearLayout pointContainer,recommend_linearLayout;//小圆点容器
     private Handler handle;
     private Runnable rotateRunbale;
     private List<String> imgUrl;
@@ -38,6 +38,7 @@ public class RecommendedFragment extends AbsBaseFragment {
     @Override
     protected void initViews() {
         viewPager = byView(R.id.recommended_vp_lbt);
+        recommend_linearLayout = byView(R.id.recommend_linearLayout);
         pointContainer = byView(R.id.recommended_linea_yd);
         recommended_hlv_blockbuster = byView(R.id.recommended_hlv_blockbuster);
         recommended_hlv_line = byView(R.id.recommended_hlv_line);
@@ -53,7 +54,9 @@ public class RecommendedFragment extends AbsBaseFragment {
         firstAdapter = new RecommendedHorizontalAdapter(context,2);
         featuresAdapter = new RecommendedHorizontalAdapter(context,3);
         recommendedAdapter = new RecommendedAdapter(context);
+        
         final String url = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=0.0&lng=0.0";
+
         DlaHttp.getInstance().startRequest(url, RecommendedBean.class, new OnHttpCallback<RecommendedBean>() {
             @Override
             public void onSuccess(RecommendedBean response) {
