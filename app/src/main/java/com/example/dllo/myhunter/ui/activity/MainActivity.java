@@ -1,20 +1,30 @@
 package com.example.dllo.myhunter.ui.activity;
 
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
-import com.example.dllo.myhunter.ui.fragment.PlusFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
 
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
     private RecommendedFragment recommendedFragment;
     private FoundFragment foundFragment;
-    private PlusFragment plusFragment;
     private ImageButton main_ib_trip;
+    private PopupWindow popupWindow;
+    private LinearLayout plus_lily_qx,main_linay_ys;
+    private ImageView plus_iv_city,plus_iv_travel;
 
     @Override
     protected int setLayout() {
@@ -25,17 +35,17 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     protected void initViews() {
         main_radiog = byView(R.id.main_radiog);
         main_ib_trip = byView(R.id.main_ib_trip);
+        main_linay_ys = byView(R.id.main_linay_ys);
     }
 
     @Override
     protected void initDatas() {
         recommendedFragment = new RecommendedFragment();
         foundFragment = new FoundFragment();
-        plusFragment = new PlusFragment();
         main_radiog.setOnCheckedChangeListener(this);
         main_ib_trip.setOnClickListener(this);
-
         main_radiog.check(R.id.main_rb_recommended);
+        initpopup();
     }
 
     @Override
@@ -48,10 +58,10 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, foundFragment);
                 break;
             case R.id.main_rb_message:
-
+                goTo(this,LoginActivity.class);
                 break;
             case R.id.main_rb_my:
-
+                goTo(this,LoginActivity.class);
                 break;
         }
     }
@@ -60,8 +70,81 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_ib_trip:
-                fragmentManagerTran.fragmentJump(R.id.main_fly_fragment,plusFragment);
+                popupWindow.showAsDropDown(main_linay_ys,0,2);
+                showScaleAnim();
+                showAnim();
                 break;
         }
     }
+
+    /**
+     * popupWindow
+     */
+    public void initpopup(){
+        popupWindow = new PopupWindow(this);
+        popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        View view = getLayoutInflater().inflate(R.layout.itme_popup_wo,null);
+        plus_iv_city = (ImageView) view.findViewById(R.id.plus_iv_city);
+        plus_iv_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(MainActivity.this,AsAHunterActivity.class);
+            }
+        });
+        plus_iv_travel = (ImageView) view.findViewById(R.id.plus_iv_travel);
+        plus_iv_travel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(MainActivity.this,BreadTravelActivity.class);
+            }
+        });
+        plus_lily_qx = (LinearLayout) view.findViewById(R.id.plus_lily_qx);
+        plus_lily_qx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+//        popupWindow.setBackgroundDrawable(new BitmapDrawable());//去背景颜色
+        popupWindow.setContentView(view);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+    }
+
+    /**
+     * 加号里面的两个Button的动画效果
+     */
+    public void showScaleAnim(){
+        AnimationSet animationSet = new AnimationSet(true);
+        //缩放
+        ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1f, 0.0f, 1f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setDuration(500);
+        animationSet.addAnimation(scaleAnimation);
+        //平移
+        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0,
+                Animation.RELATIVE_TO_PARENT, 0,
+                Animation.RELATIVE_TO_SELF, 0.9f,
+                Animation.RELATIVE_TO_PARENT, 0);
+        translateAnimation.setDuration(500);
+        animationSet.addAnimation(translateAnimation);
+        //旋转
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360,
+                Animation.RELATIVE_TO_SELF,0.5f,
+                Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimation.setDuration(500);
+        animationSet.addAnimation(rotateAnimation);
+        plus_iv_city.startAnimation(animationSet);
+        plus_iv_travel.startAnimation(animationSet);
+    }
+    //加号的旋转
+    public void showAnim(){
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 180,
+                Animation.RELATIVE_TO_SELF,0.5f,
+                Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimation.setDuration(500);
+        main_ib_trip.startAnimation(rotateAnimation);
+    }
+
 }

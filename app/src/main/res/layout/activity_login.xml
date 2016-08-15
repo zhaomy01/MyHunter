@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:background="#68BBCE">
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/login_iv_fh"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_margin="30dp"
         android:src="@mipmap/btn_back" />
 
@@ -138,6 +139,7 @@
             android:background="@android:color/white" />
 
         <TextView
+            android:id="@+id/login_tv_zc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
 
@@ -17,6 +16,7 @@
         android:id="@+id/main_radiog"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@android:color/white"
         android:orientation="horizontal">
 
         <RadioButton
@@ -43,13 +43,21 @@
             android:textColor="@drawable/selector_recommend"
             android:textSize="12sp" />
 
-        <ImageButton
-            android:id="@+id/main_ib_trip"
+        <LinearLayout
+            android:id="@+id/main_linay_ys"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#68BBCE"
-            android:src="@mipmap/tabbar_trip_add" />
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/main_ib_trip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#68BBCE"
+                android:src="@mipmap/tabbar_trip_add" />
+        </LinearLayout>
 
         <RadioButton
             android:id="@+id/main_rb_message"

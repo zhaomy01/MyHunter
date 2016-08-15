@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyHunter</string>
+    <string name="app_name">面包猎人</string>
     <string name="region">国家和地区</string>
     <string name="china">中国</string>
     <string name="phone_num">请填写手机号码</string>

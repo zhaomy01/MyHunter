@@ -1,16 +1,14 @@
-package com.example.dllo.myhunter.ui.fragment;
-
+package com.example.dllo.myhunter.ui.activity;
 
 import com.example.dllo.myhunter.R;
 
 /**
- * 加号页面
+ * 成为猎人页面
  */
-public class PlusFragment extends AbsBaseFragment {
-
+public class AsAHunterActivity extends AbsBaseActivity {
     @Override
     protected int setLayout() {
-        return R.layout.itme_popup_wo;
+        return R.layout.activity_asahunter;
     }
 
     @Override
