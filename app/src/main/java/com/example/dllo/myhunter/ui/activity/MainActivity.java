@@ -1,7 +1,9 @@
 package com.example.dllo.myhunter.ui.activity;
 
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
@@ -26,6 +28,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     private LinearLayout plus_lily_qx,main_linay_ys;
     private ImageView plus_iv_city,plus_iv_travel;
 
+
     @Override
     protected int setLayout() {
         return R.layout.activity_main;
@@ -37,6 +40,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         main_ib_trip = byView(R.id.main_ib_trip);
         main_linay_ys = byView(R.id.main_linay_ys);
     }
+
 
     @Override
     protected void initDatas() {
@@ -63,6 +67,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
             case R.id.main_rb_my:
                 goTo(this,LoginActivity.class);
                 break;
+
         }
     }
 
@@ -74,8 +79,10 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 showScaleAnim();
                 showAnim();
                 break;
+
         }
     }
+
 
     /**
      * popupWindow
@@ -106,10 +113,17 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 popupWindow.dismiss();
             }
         });
-//        popupWindow.setBackgroundDrawable(new BitmapDrawable());//去背景颜色
+        // popupWindow.setBackgroundDrawable(new BitmapDrawable());//去背景颜色
         popupWindow.setContentView(view);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
+
+        WindowManager m = getWindow().getWindowManager();
+        Display d = m.getDefaultDisplay();
+        WindowManager.LayoutParams p = getWindow().getAttributes();
+        p.width = d.getWidth();
+        getWindow().setAttributes(p);
+
     }
 
     /**
