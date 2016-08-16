@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="textcolor">#63B8FF</color>
+    <color name="login_act_backColor">#e0000000</color>
+
 </resources>

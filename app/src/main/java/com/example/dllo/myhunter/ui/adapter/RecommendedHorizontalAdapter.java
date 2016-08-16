@@ -75,6 +75,7 @@ public class RecommendedHorizontalAdapter extends BaseAdapter {
 
         return convertView;
     }
+
     class ViewHolder{
         private ImageView iv;
         private TextView tv_title,tv_number;

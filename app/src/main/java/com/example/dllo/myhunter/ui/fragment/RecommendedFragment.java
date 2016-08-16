@@ -1,17 +1,30 @@
 package com.example.dllo.myhunter.ui.fragment;
 
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+
 import android.util.Log;
+
+import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
+
 import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
+
+import com.example.dllo.myhunter.tools.AnimationTextView;
+
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
+import com.example.dllo.myhunter.ui.activity.DialogActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedHorizontalAdapter;
@@ -23,21 +36,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
+
 /**
  * 推荐页面
  */
-public class RecommendedFragment extends AbsBaseFragment {
+public class RecommendedFragment extends AbsBaseFragment implements View.OnClickListener {
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
-    private RecommendedHorizontalAdapter blockbusterAdapter, lineAdapter, firstAdapter, featuresAdapter;
-    private LinearLayout pointContainer, recommend_linearLayout;//小圆点容器
-    private Handler handle;
-    private Runnable rotateRunbale;
-    private List<String> imgUrl;
+    private LinearLayout recommend_linearLayout;//小圆点容器
     private HorizontalListView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first, recommended_hlv_features, recommmended_starHunter_hlv,recommended_story_hlv;
     private VerticalListView recommended_vlv_editor;
     private RecommendedStarHunterAdapter starHunterAdapter,storyAdapter;
     private RecommendedEditorAdapter editorAdapter;
+    private ImageView recommend_iv_mbl,itme_title_theme;
+    private RecommendedHorizontalAdapter blockbusterAdapter, lineAdapter, firstAdapter, featuresAdapter;
+    private LinearLayout pointContainer;//小圆点容器
+    private Handler handle;
+    private Runnable rotateRunbale;
+    private List<String> imgUrl;
+    private TextView recommend_tv_one, recommend_tv_two, recommend_tv_three,
+            recommend_tv_four,recommend_tv_five,recommend_tv_six;
+    private View contentView;//获取根布局里的view
+    private AnimatorSet set;
+
 
     @Override
     protected int setLayout() {
@@ -47,8 +69,15 @@ public class RecommendedFragment extends AbsBaseFragment {
     @Override
     protected void initViews() {
         viewPager = byView(R.id.recommended_vp_lbt);
-        recommend_linearLayout = byView(R.id.recommend_linearLayout);
+        recommend_iv_mbl = byView(R.id.recommend_iv_mbl);
+        itme_title_theme = byView(R.id.itme_title_theme);
         pointContainer = byView(R.id.recommended_linea_yd);
+        recommend_tv_one = byView(R.id.recommend_tv_one);
+        recommend_tv_two = byView(R.id.recommend_tv_two);
+        recommend_tv_three = byView(R.id.recommend_tv_three);
+        recommend_tv_four = byView(R.id.recommend_tv_four);
+        recommend_tv_five = byView(R.id.recommend_tv_five);
+        recommend_tv_six = byView(R.id.recommend_tv_six);
         recommended_hlv_blockbuster = byView(R.id.recommended_hlv_blockbuster);
         recommended_hlv_line = byView(R.id.recommended_hlv_line);
         recommended_hlv_first = byView(R.id.recommended_hlv_first);
@@ -61,15 +90,21 @@ public class RecommendedFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
+        set = new AnimatorSet();
+        contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
+
+        itme_title_theme.setOnClickListener(this);
         imgUrl = new ArrayList<>();
         blockbusterAdapter = new RecommendedHorizontalAdapter(context, 0);
         lineAdapter = new RecommendedHorizontalAdapter(context, 1);
         firstAdapter = new RecommendedHorizontalAdapter(context, 2);
         featuresAdapter = new RecommendedHorizontalAdapter(context, 3);
         recommendedAdapter = new RecommendedAdapter(context);
+
         starHunterAdapter = new RecommendedStarHunterAdapter(context,0);
         storyAdapter = new RecommendedStarHunterAdapter(context,1);
         editorAdapter  = new RecommendedEditorAdapter(context);
+
 
         final String url = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=0.0&lng=0.0";
         HashMap hashMap = new HashMap();
@@ -132,6 +167,16 @@ public class RecommendedFragment extends AbsBaseFragment {
         viewPager.setCurrentItem(300);
         handle = new Handler();
         startRotate();
+
+
+        recommend_tv_one.startAnimation(AnimationTextView.getAnimation().showTranslateOne());
+        recommend_tv_two.startAnimation(AnimationTextView.getAnimation().showTranslateTwo());
+        recommend_tv_three.startAnimation(AnimationTextView.getAnimation().showTranslateThree());
+        recommend_tv_four.startAnimation(AnimationTextView.getAnimation().showTranslateFour());
+        recommend_tv_five.startAnimation(AnimationTextView.getAnimation().showTranslateFive());
+        recommend_tv_six.startAnimation(AnimationTextView.getAnimation().showTranslateSix());
+
+        Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context,20)).into(recommend_iv_mbl);
 
 
     }
@@ -206,4 +251,32 @@ public class RecommendedFragment extends AbsBaseFragment {
         handle.postDelayed(rotateRunbale, 3000);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.itme_title_theme:
+                goTo(context,DialogActivity.class);
+
+                //ofFloat()方法的第一个参数表示动画操作的对象（可以是任意对象），
+                // 第二个参数表示操作对象的属性名字（只要是对象有的属性都可以），
+                // 第三个参数之后就是动画过渡值。当然过度值可以有一个到N个，
+                // 如果是一个值的话默认这个值是动画过渡值的结束值。如果有N个值，动画就在这N个值之间过渡。
+                ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView,"scaleX",1f,0.9f);
+                ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView,"scaleY",1f,0.9f);
+                set.play(oaX);
+                set.play(oaY);
+                set.start();
+                break;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView,"scaleX",0.9f,1f);
+        ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView,"scaleY",0.9f,1f);
+        set.play(oaX);
+        set.play(oaY);
+        set.start();
+    }
 }
