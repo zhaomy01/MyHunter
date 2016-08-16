@@ -3,10 +3,10 @@ package com.example.dllo.myhunter.model.bean;
 import java.util.List;
 
 /**
- * 发现页面的实体类
+ * Created by dllo on 16/8/15.
+ * 推荐页面明星猎人解析类
  */
-public class RecommendedBean {
-
+public class RecommendedStarHunterBean {
     private int status;
     private String message;
     private DataBean data;
@@ -36,12 +36,20 @@ public class RecommendedBean {
     }
 
     public static class DataBean {
+        private HunteBean hunters;
         private OtherProductsBean other_products;
         private String became_hunter_url;
         private SpotsBean spots;
-        private List<HuntersBean> tags;
         private List<ProductModulesBean> product_modules;
         private List<BannersBean> banners;
+
+        public HunteBean getHunters() {
+            return hunters;
+        }
+
+        public void setHunters(HunteBean hunters) {
+            this.hunters = hunters;
+        }
 
         public OtherProductsBean getOther_products() {
             return other_products;
@@ -61,14 +69,6 @@ public class RecommendedBean {
 
         public SpotsBean getSpots() {
             return spots;
-        }
-
-        public List<HuntersBean> getTags() {
-            return tags;
-        }
-
-        public void setTags(List<HuntersBean> tags) {
-            this.tags = tags;
         }
 
         public void setSpots(SpotsBean spots) {
@@ -91,9 +91,10 @@ public class RecommendedBean {
             this.banners = banners;
         }
 
-        public static class HuntersBean {
+        public static class HunteBean {
             private String title;
-            private HunListBean hunter_list;
+            private List<HunterList> hunter_list;
+
             public String getTitle() {
                 return title;
             }
@@ -102,48 +103,46 @@ public class RecommendedBean {
                 this.title = title;
             }
 
-            public HunListBean getHunter_list() {
+            public List<HunterList> getHunterLists() {
                 return hunter_list;
             }
 
-            public void setHunter_list(HunListBean hunter_list) {
+            public void setHunterLists(List<HunterList> hunter_list) {
                 this.hunter_list = hunter_list;
             }
 
-            public static class HunListBean {
-                private double goodcomment_rate;
-                private String product_image;
-                private String name;
+            public static class HunterList {
+                private String username;
+                private String description;
+                private long user_id;
                 private String avatar_s;
-                private String comment_text;
+                private String product_image;
                 private String avatar_l;
                 private String avatar_m;
                 private int product_id;
-                private long id;
-                private int product_title;
 
-                public String getProduct_image() {
-                    return product_image;
+                public String getUsername() {
+                    return username;
                 }
 
-                public void setProduct_image(String product_image) {
-                    this.product_image = product_image;
+                public void setUsername(String username) {
+                    this.username = username;
                 }
 
-                public double getGoodcomment_rate() {
-                    return goodcomment_rate;
+                public String getDescription() {
+                    return description;
                 }
 
-                public void setGoodcomment_rate(double goodcomment_rate) {
-                    this.goodcomment_rate = goodcomment_rate;
+                public void setDescription(String description) {
+                    this.description = description;
                 }
 
-                public String getName() {
-                    return name;
+                public long getUser_id() {
+                    return user_id;
                 }
 
-                public void setName(String name) {
-                    this.name = name;
+                public void setUser_id(long user_id) {
+                    this.user_id = user_id;
                 }
 
                 public String getAvatar_s() {
@@ -154,12 +153,12 @@ public class RecommendedBean {
                     this.avatar_s = avatar_s;
                 }
 
-                public String getComment_text() {
-                    return comment_text;
+                public String getProduct_image() {
+                    return product_image;
                 }
 
-                public void setComment_text(String comment_text) {
-                    this.comment_text = comment_text;
+                public void setProduct_image(String product_image) {
+                    this.product_image = product_image;
                 }
 
                 public String getAvatar_l() {
@@ -185,24 +184,10 @@ public class RecommendedBean {
                 public void setProduct_id(int product_id) {
                     this.product_id = product_id;
                 }
-
-                public long getId() {
-                    return id;
-                }
-
-                public void setId(long id) {
-                    this.id = id;
-                }
-
-                public int getProduct_title() {
-                    return product_title;
-                }
-
-                public void setProduct_title(int product_title) {
-                    this.product_title = product_title;
-                }
             }
+
         }
+
 
         public static class OtherProductsBean {
             private String title;
@@ -242,14 +227,14 @@ public class RecommendedBean {
                 private String date_str;
                 private String price;
                 private List<String> tab_list;
-                private UserProdd user;
+                private UserProdd userProdds;
 
-                public UserProdd getUser() {
-                    return user;
+                public UserProdd getUserProdds() {
+                    return userProdds;
                 }
 
-                public void setUser(UserProdd user) {
-                    this.user = user;
+                public void setUserProdds(UserProdd userProdds) {
+                    this.userProdds = userProdds;
                 }
 
                 public String getDistance() {
@@ -389,15 +374,15 @@ public class RecommendedBean {
                 }
 
                 public static class UserProdd {
-                    private long id;
+                    private int id;
                     private String avatar_l;
                     private String name;
 
-                    public long getId() {
+                    public int getId() {
                         return id;
                     }
 
-                    public void setId(long id) {
+                    public void setId(int id) {
                         this.id = id;
                     }
 
@@ -769,7 +754,6 @@ public class RecommendedBean {
                 public void setStatus(String status) {
                     this.status = status;
                 }
-
 
 
                 public UserProdasg getProdasgs() {

@@ -218,19 +218,73 @@
                 android:id="@+id/recommended_hlv_features"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
                 android:text="明星猎人"
-                android:textSize="13sp"
-                android:textColor="#434343"/>
+                android:textColor="#434343"
+                android:textSize="13sp" />
+
             <com.example.dllo.myhunter.view.HorizontalListView
                 android:id="@+id/star_hunter_hlv"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="320dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="20dp">
-            </com.example.dllo.myhunter.view.HorizontalListView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="体验故事"
+                    android:textColor="#434343"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更多"
+                    android:textColor="#cacaca" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/cityhunter_hunter_icon_go" />
+            </LinearLayout>
+
+            <com.example.dllo.myhunter.view.HorizontalListView
+                android:id="@+id/story_hunter_hlv"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="编辑精选"
+                android:textColor="#434343"
+                android:textSize="13sp" />
+
+            <com.example.dllo.myhunter.view.VerticalListView
+                android:id="@+id/editor_vlv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
