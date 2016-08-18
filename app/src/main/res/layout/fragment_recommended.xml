@@ -5,6 +5,8 @@
     android:background="#fbfbfb"
     android:orientation="vertical">
 
+    <include layout="@layout/itme_title"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,40 +81,154 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_blockbuster"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="#ececec">
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp">
 
-                <com.example.dllo.myhunter.view.MyTestView
-                    android:id="@+id/recommend_mytext"
+                <ImageView
+                    android:id="@+id/recommend_iv_mbl"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp" />
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
 
                 <LinearLayout
-                    android:id="@+id/recommend_linearLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_recommended">
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="全部"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="城市微旅行"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/login_act_backStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_three"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="本地生活"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="5dp"
-                        android:text="全部" />
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_four"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="技能get"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_five"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="摄影"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/recommend_tv_six"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_reco_tv"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="文化体验"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
-
             </RelativeLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,7 +260,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_line"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -179,7 +295,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_first"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -214,12 +330,77 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_features"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="明星猎人"
+                android:textColor="#434343"
+                android:textSize="13sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/star_hunter_hlv"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="体验故事"
+                    android:textColor="#434343"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更多"
+                    android:textColor="#cacaca" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/cityhunter_hunter_icon_go" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/story_hunter_hlv"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:text="编辑精选"
+                android:textColor="#434343"
+                android:textSize="13sp" />
+
+            <com.example.dllo.myhunter.view.VerticalListView
+                android:id="@+id/editor_vlv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>

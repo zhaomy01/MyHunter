@@ -26,6 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 发现页面
  */
 public class FoundFragment extends AbsBaseFragment {
+
     private RecyclerView recyclerView;
     private FoundAdapter foundAdapter;
     private List<FoundBean> data;
