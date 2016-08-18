@@ -21,6 +21,7 @@
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.BreadTravelActivity"/>
         <activity android:name=".ui.activity.AsAHunterActivity"/>
+        <activity android:name=".ui.activity.RecommendWebViewActivity"/>
     </application>
 
 </manifest>
