@@ -1,11 +1,9 @@
 package com.example.dllo.myhunter.ui.activity;
 
-import android.graphics.drawable.AnimationDrawable;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
+import android.content.Intent;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 
 import com.example.dllo.myhunter.R;
 
@@ -15,7 +13,6 @@ import com.example.dllo.myhunter.R;
  */
 public class RecommendWebViewActivity extends AbsBaseActivity {
     private WebView webView;
-    private String webViewUrl;
 
     @Override
     protected int setLayout() {
@@ -30,20 +27,27 @@ public class RecommendWebViewActivity extends AbsBaseActivity {
 
     @Override
     protected void initDatas() {
+        Intent intent = getIntent();
+        String path = intent.getStringExtra("path");
         //设置WebView属性,能够执行JavaScript脚本
-        webView.getSettings().setJavaScriptEnabled(true);
-        //加载需要显示的网页
-        webView.loadUrl(webViewUrl);
         //设置web视图
-        webView.setWebViewClient(new HelloWebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        //加载需要显示的网页
+        webView.loadUrl(path);
+
+        //这就表明当需要从一个网页跳转到另一个网页的时候,目标网页已然在当前的WebView中显示
+        webView.setWebViewClient(new MyWebViewClient());
+
     }
 
-    //Web视图
-    private class HelloWebViewClient extends WebViewClient {
+    // webView视图
+    private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
+            view.loadUrl(url);//根据传入的参数再去加载新的网页
+            return true;//表示当前WebView可以处理打开的新网页的请求,不用借助系统浏览器
         }
     }
+
 }

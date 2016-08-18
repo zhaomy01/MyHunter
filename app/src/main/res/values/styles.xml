@@ -28,7 +28,16 @@
         <item name="android:background">@android:color/white</item>
         <item name="android:layout_marginTop">10dp</item>
     </style>
+    <style name="cricleImage">
+        <item name="android:layout_width" >30dp</item>
+        <item name="android:layout_height" >30dp</item>
+    </style>
 
+
+    <style name="cricleImages">
+        <item name="android:layout_width" >33dp</item>
+        <item name="android:layout_height" >33dp</item>
+    </style>
     <style name="login_act_backStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/login_act_backColor</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -37,6 +46,7 @@
 
     <style name="MainViewdialog" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
+
     </style>
 
 

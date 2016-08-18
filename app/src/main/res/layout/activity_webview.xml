@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <WebView
         android:id="@+id/recommend_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#68BBCE"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha"
+            android:layout_gravity="center"
+            />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="活动详情"
+        android:layout_gravity="center"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>
