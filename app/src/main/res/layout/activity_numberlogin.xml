@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#68BBCE"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/register_iv_fh"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="30dp"
+            android:src="@mipmap/btn_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="30dp"
+            android:text="无密码快捷登录"
+            android:textColor="#BDE3EB" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        style="@style/register_relativeLayout"
+        android:layout_width="wrap_content">
+
+        <TextView
+            android:id="@+id/register_tv_region"
+            style="@style/register_textView"
+            android:layout_centerVertical="true"
+            android:text="@string/region" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/register_iv_arrow"
+            android:text="@string/china"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/register_iv_arrow"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:src="@mipmap/country_arrow" />
+
+        <View
+            style="@style/register_view"
+            android:layout_below="@+id/register_tv_region" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/register_relativeLayout">
+
+        <TextView
+            android:id="@+id/register_tv_phoneNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:text="+86"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/register_view"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/register_tv_phoneNum"
+            android:background="@android:color/white" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/register_tv_phoneNum"
+            android:background="@null"
+            android:hint="@string/phone_num"
+            android:textColor="@android:color/white"
+            android:textColorHint="#BDE3EB"
+            android:textCursorDrawable="@drawable/shape_cursor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/register_view"
+            android:background="@android:color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/register_relativeLayout">
+
+        <EditText
+            android:id="@+id/register_et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:hint="@string/password"
+            android:textColor="@android:color/white"
+            android:textColorHint="#BDE3EB"
+            android:textCursorDrawable="@drawable/shape_cursor" />
+
+        <View
+            style="@style/register_view"
+            android:layout_below="@id/register_et_password" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/register_btn_agreen"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shape_button_register"
+        android:text="立即登录"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+</LinearLayout>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dllo.myhunter">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,12 +20,16 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
+
         <activity android:name=".ui.activity.BreadTravelActivity"/>
         <activity android:name=".ui.activity.AsAHunterActivity"/>
         <activity android:name=".ui.activity.RecommendWebViewActivity"/>
         <activity android:name=".ui.activity.DialogActivity"
             android:theme="@style/dialog"/>
+        <activity android:name=".ui.activity.NumberLoginActivity" />
+        <activity android:name=".ui.activity.EmailLoginActivity" />
+        <activity android:name=".ui.activity.AllCityActivity"/>
+
 
     </application>
-
 </manifest>
