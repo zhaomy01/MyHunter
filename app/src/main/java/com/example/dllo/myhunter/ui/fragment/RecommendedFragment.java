@@ -56,7 +56,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
             recommended_hlv_features,recommmended_starHunter_hlv,recommended_story_hlv;
 
-
     @Override
     protected int setLayout() {
         return R.layout.fragment_recommended;
@@ -168,7 +167,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
             }
         });
-
 
         viewPager.setCurrentItem(300);
         handle = new Handler();
