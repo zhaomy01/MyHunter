@@ -19,6 +19,7 @@ import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
 import com.example.dllo.myhunter.tools.AnimationTextView;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
+import com.example.dllo.myhunter.ui.activity.AllCityActivity;
 import com.example.dllo.myhunter.ui.activity.DialogActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
@@ -50,7 +51,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private Runnable rotateRunbale;
     private List<String> imgUrl;
     private TextView recommend_tv_one, recommend_tv_two, recommend_tv_three,
-            recommend_tv_four,recommend_tv_five,recommend_tv_six;
+            recommend_tv_four,recommend_tv_five,recommend_tv_six,recommended_tv_allcity;
     private View contentView;//获取根布局里的view
     private AnimatorSet set;
     private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
@@ -80,6 +81,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommmended_starHunter_hlv = byView(R.id.star_hunter_hlv);
         recommended_story_hlv = byView(R.id.story_hunter_hlv);
         recommended_vlv_editor = byView(R.id.editor_vlv);
+        recommended_tv_allcity = byView(R.id.itme_title_tv);
 
     }
 
@@ -89,6 +91,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
 
         itme_title_theme.setOnClickListener(this);
+        recommended_tv_allcity.setOnClickListener(this);
         imgUrl = new ArrayList<>();
         blockbusterAdapter = new RecommendedRcAdapter(context, 0);
         lineAdapter = new RecommendedRcAdapter(context, 1);
@@ -269,6 +272,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 set.play(oaX);
                 set.play(oaY);
                 set.start();
+                break;
+            case R.id.itme_title_tv:
+                goTo(context, AllCityActivity.class);
                 break;
         }
     }

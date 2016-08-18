@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             app:tabBackground="@drawable/selector"
             app:tabIndicatorColor="#68BBCE"
+            app:tabSelectedTextColor="#68BBCE"
             app:tabIndicatorHeight="0dp"
             app:tabTextColor="@android:color/white" />
     </LinearLayout>

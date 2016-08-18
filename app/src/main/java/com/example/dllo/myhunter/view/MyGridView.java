@@ -4,13 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 import android.view.MotionEvent;
-import android.widget.GridView;
 
 /**
  * 自定义展开Gridview
  */
 public class MyGridView extends GridView {
-    
+
 
     public MyGridView(Context context) {
         super(context);
