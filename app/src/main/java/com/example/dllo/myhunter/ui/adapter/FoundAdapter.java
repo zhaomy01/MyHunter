@@ -31,8 +31,6 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
     public static final int HAS_STICKY_VIEW = 2;
     public static final int NONE_STICKY_VIEW = 3;
 
-
-
     private CircleImageView found_cim_one, found_cim_two, found_cim_three, found_cim_four, found_cim_five;
     private CircleImageView[] imgs = {found_cim_one, found_cim_two, found_cim_three, found_cim_four, found_cim_five};
     private int[] imgsId = {R.id.found_cim_one, R.id.found_cim_two, R.id.found_cim_three, R.id.found_cim_four, R.id.found_cim_five};
