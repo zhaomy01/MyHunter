@@ -1,6 +1,7 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,15 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecommendedTwoHunterAdapter extends RecyclerView.Adapter<RecommendedTwoHunterAdapter.MyHolder> {
+/**
+ * 推荐页面中体验故事——横滑Recyclerview适配器
+ */
+
+public class RecommendedStoryAdapter extends RecyclerView.Adapter<RecommendedStoryAdapter.MyHolder> {
     private RecommendedStarHunterBean data;
     private Context context;
 
-    public RecommendedTwoHunterAdapter(Context context) {
+    public RecommendedStoryAdapter(Context context) {
         this.context = context;
     }
 
@@ -38,7 +43,7 @@ public class RecommendedTwoHunterAdapter extends RecyclerView.Adapter<Recommende
         holder.textView_name.setText(data.getData().getSpots().getSpot_list().get(position).getUser().getName());
         holder.textView_content.setText(data.getData().getSpots().getSpot_list().get(position).getText());
         holder.textView_add.setText(data.getData().getSpots().getSpot_list().get(position).getTarget().getTitle());
-        Picasso.with(context).load(data.getData().getSpots().getSpot_list().get(position).getUser().getAvatar_l()).into(holder.circleImageView);
+        Picasso.with(context).load(data.getData().getSpots().getSpot_list().get(position).getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(holder.circleImageView);
         Picasso.with(context).load(data.getData().getSpots().getSpot_list().get(position).getCover_image()).into(holder.imageView_middle);
     }
 
