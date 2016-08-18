@@ -28,7 +28,6 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     private LinearLayout plus_lily_qx,main_linay_ys;
     private ImageView plus_iv_city,plus_iv_travel;
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_main;

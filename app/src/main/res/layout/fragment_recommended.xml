@@ -81,7 +81,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_blockbuster"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -260,7 +260,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_line"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -295,7 +295,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_first"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -330,7 +330,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recommended_hlv_features"
                 android:layout_width="match_parent"
                 android:layout_height="180dp" />
@@ -346,7 +346,7 @@
                 android:textColor="#434343"
                 android:textSize="13sp" />
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/star_hunter_hlv"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"/>
@@ -381,7 +381,7 @@
                     android:src="@mipmap/cityhunter_hunter_icon_go" />
             </LinearLayout>
 
-            <com.example.dllo.myhunter.view.HorizontalListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/story_hunter_hlv"
                 android:layout_width="match_parent"
                 android:layout_height="340dp"/>

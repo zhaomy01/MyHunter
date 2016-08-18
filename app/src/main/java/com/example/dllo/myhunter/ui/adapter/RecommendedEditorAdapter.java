@@ -50,6 +50,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         EditorHolder editorHolder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_recommended_editor_vlv, parent, false);

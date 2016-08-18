@@ -1,62 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:background="@drawable/shape_recommended"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/itme_recommend_hor_iv"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/itme_recommend_hor_tit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:textColor="#403f42"
+            android:text="title" />
 
         <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_recommended"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/itme_recommend_hor_iv"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
-                android:scaleType="fitXY" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
 
             <TextView
-                android:id="@+id/itme_recommend_hor_tit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:ellipsize="end"
-                android:lines="2"
-                android:text="title" />
+                android:layout_weight="1" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="¥"
+                android:textColor="#eb5c3a" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="¥"
-                    android:textColor="#eb5c3a"
-                    android:layout_marginBottom="10dp"/>
-
-                <TextView
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/itme_recommend_hor_q"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:text="钱"
-                    android:textColor="#eb5c3a"
-                    android:textSize="15sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/itme_recommend_hor_q"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="7dp"
+                android:text="钱"
+                android:textColor="#eb5c3a"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 

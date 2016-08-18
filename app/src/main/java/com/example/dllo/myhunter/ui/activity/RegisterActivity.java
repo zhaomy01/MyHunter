@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.example.dllo.myhunter.R;
 
 /**
- * Created by dllo on 16/8/12.
+ * 注册页面
  */
 public class RegisterActivity extends AbsBaseActivity implements View.OnClickListener {
     private ImageView register_iv_fh;

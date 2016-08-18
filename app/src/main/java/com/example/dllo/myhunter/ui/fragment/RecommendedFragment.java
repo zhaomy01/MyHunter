@@ -5,11 +5,9 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
-
-import android.util.Log;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,19 +15,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
-
 import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
-
 import com.example.dllo.myhunter.tools.AnimationTextView;
-
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
 import com.example.dllo.myhunter.ui.activity.DialogActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
-import com.example.dllo.myhunter.ui.adapter.RecommendedHorizontalAdapter;
-import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunterAdapter;
-import com.example.dllo.myhunter.view.HorizontalListView;
+import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
+import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunteAdapter;
+import com.example.dllo.myhunter.ui.adapter.RecommendedTwoHunterAdapter;
 import com.example.dllo.myhunter.view.VerticalListView;
 
 import java.util.ArrayList;
@@ -44,13 +39,12 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
 public class RecommendedFragment extends AbsBaseFragment implements View.OnClickListener {
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
-    private LinearLayout recommend_linearLayout;//小圆点容器
-    private HorizontalListView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first, recommended_hlv_features, recommmended_starHunter_hlv,recommended_story_hlv;
     private VerticalListView recommended_vlv_editor;
-    private RecommendedStarHunterAdapter starHunterAdapter,storyAdapter;
+    private RecommendedStarHunteAdapter starHunterAdapter;
+    private RecommendedTwoHunterAdapter storyAdapter;
     private RecommendedEditorAdapter editorAdapter;
     private ImageView recommend_iv_mbl,itme_title_theme;
-    private RecommendedHorizontalAdapter blockbusterAdapter, lineAdapter, firstAdapter, featuresAdapter;
+    private RecommendedRcAdapter blockbusterAdapter, lineAdapter, firstAdapter, featuresAdapter;
     private LinearLayout pointContainer;//小圆点容器
     private Handler handle;
     private Runnable rotateRunbale;
@@ -59,6 +53,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
             recommend_tv_four,recommend_tv_five,recommend_tv_six;
     private View contentView;//获取根布局里的view
     private AnimatorSet set;
+    private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
+            recommended_hlv_features,recommmended_starHunter_hlv,recommended_story_hlv;
 
 
     @Override
@@ -95,14 +91,14 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
         itme_title_theme.setOnClickListener(this);
         imgUrl = new ArrayList<>();
-        blockbusterAdapter = new RecommendedHorizontalAdapter(context, 0);
-        lineAdapter = new RecommendedHorizontalAdapter(context, 1);
-        firstAdapter = new RecommendedHorizontalAdapter(context, 2);
-        featuresAdapter = new RecommendedHorizontalAdapter(context, 3);
+        blockbusterAdapter = new RecommendedRcAdapter(context, 0);
+        lineAdapter = new RecommendedRcAdapter(context, 1);
+        firstAdapter = new RecommendedRcAdapter(context, 2);
+        featuresAdapter = new RecommendedRcAdapter(context, 3);
         recommendedAdapter = new RecommendedAdapter(context);
 
-        starHunterAdapter = new RecommendedStarHunterAdapter(context,0);
-        storyAdapter = new RecommendedStarHunterAdapter(context,1);
+        starHunterAdapter = new RecommendedStarHunteAdapter(context);
+        storyAdapter = new RecommendedTwoHunterAdapter(context);
         editorAdapter  = new RecommendedEditorAdapter(context);
 
 
@@ -119,8 +115,12 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
             @Override
             public void onSuccess(RecommendedStarHunterBean response) {
                 starHunterAdapter.setData(response);
-                recommmended_starHunter_hlv.setAdapter(starHunterAdapter);
                 storyAdapter.setData(response);
+
+                recommmended_starHunter_hlv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+                recommended_story_hlv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+
+                recommmended_starHunter_hlv.setAdapter(starHunterAdapter);
                 recommended_story_hlv.setAdapter(storyAdapter);
             }
 
@@ -148,6 +148,12 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 featuresAdapter.setData(response);
                 recommendedAdapter.setData(imgUrl);
                 viewPager.setAdapter(recommendedAdapter);
+
+                recommended_hlv_first.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+                recommended_hlv_features.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+                recommended_hlv_line.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+                recommended_hlv_blockbuster.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+
                 recommended_hlv_first.setAdapter(firstAdapter);
                 recommended_hlv_features.setAdapter(featuresAdapter);
                 recommended_hlv_line.setAdapter(lineAdapter);
@@ -168,7 +174,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         handle = new Handler();
         startRotate();
 
-
         recommend_tv_one.startAnimation(AnimationTextView.getAnimation().showTranslateOne());
         recommend_tv_two.startAnimation(AnimationTextView.getAnimation().showTranslateTwo());
         recommend_tv_three.startAnimation(AnimationTextView.getAnimation().showTranslateThree());
@@ -176,8 +181,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommend_tv_five.startAnimation(AnimationTextView.getAnimation().showTranslateFive());
         recommend_tv_six.startAnimation(AnimationTextView.getAnimation().showTranslateSix());
 
+        //毛玻璃效果图片
         Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context,20)).into(recommend_iv_mbl);
-
 
     }
 

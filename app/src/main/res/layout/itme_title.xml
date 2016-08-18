@@ -33,14 +33,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="面包猎人"
-        android:textSize="16sp"
-        android:textColor="@android:color/white" />
-
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/itme_title_theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="18dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
