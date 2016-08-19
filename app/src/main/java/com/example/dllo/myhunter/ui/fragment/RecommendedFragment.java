@@ -19,12 +19,13 @@ import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
 import com.example.dllo.myhunter.tools.AnimationTextView;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
+import com.example.dllo.myhunter.ui.activity.AllCityActivity;
 import com.example.dllo.myhunter.ui.activity.DialogActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunteAdapter;
-import com.example.dllo.myhunter.ui.adapter.RecommendedTwoHunterAdapter;
+import com.example.dllo.myhunter.ui.adapter.RecommendedStoryAdapter;
 import com.example.dllo.myhunter.view.VerticalListView;
 
 import java.util.ArrayList;
@@ -41,20 +42,20 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private RecommendedAdapter recommendedAdapter;
     private VerticalListView recommended_vlv_editor;
     private RecommendedStarHunteAdapter starHunterAdapter;
-    private RecommendedTwoHunterAdapter storyAdapter;
+    private RecommendedStoryAdapter storyAdapter;
     private RecommendedEditorAdapter editorAdapter;
-    private ImageView recommend_iv_mbl,itme_title_theme;
+    private ImageView recommend_iv_mbl, itme_title_theme;
     private RecommendedRcAdapter blockbusterAdapter, lineAdapter, firstAdapter, featuresAdapter;
     private LinearLayout pointContainer;//小圆点容器
     private Handler handle;
     private Runnable rotateRunbale;
     private List<String> imgUrl;
     private TextView recommend_tv_one, recommend_tv_two, recommend_tv_three,
-            recommend_tv_four,recommend_tv_five,recommend_tv_six;
+            recommend_tv_four, recommend_tv_five, recommend_tv_six, recommended_tv_allcity;
     private View contentView;//获取根布局里的view
     private AnimatorSet set;
     private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
-            recommended_hlv_features,recommmended_starHunter_hlv,recommended_story_hlv;
+            recommended_hlv_features, recommmended_starHunter_hlv, recommended_story_hlv;
 
     @Override
     protected int setLayout() {
@@ -80,6 +81,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommmended_starHunter_hlv = byView(R.id.star_hunter_hlv);
         recommended_story_hlv = byView(R.id.story_hunter_hlv);
         recommended_vlv_editor = byView(R.id.editor_vlv);
+        recommended_tv_allcity = byView(R.id.itme_title_tv);
 
     }
 
@@ -89,6 +91,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
 
         itme_title_theme.setOnClickListener(this);
+        recommended_tv_allcity.setOnClickListener(this);
         imgUrl = new ArrayList<>();
         blockbusterAdapter = new RecommendedRcAdapter(context, 0);
         lineAdapter = new RecommendedRcAdapter(context, 1);
@@ -97,8 +100,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommendedAdapter = new RecommendedAdapter(context);
 
         starHunterAdapter = new RecommendedStarHunteAdapter(context);
-        storyAdapter = new RecommendedTwoHunterAdapter(context);
-        editorAdapter  = new RecommendedEditorAdapter(context);
+        storyAdapter = new RecommendedStoryAdapter(context);
+        editorAdapter = new RecommendedEditorAdapter(context);
 
 
         final String url = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=0.0&lng=0.0";
@@ -115,10 +118,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
             public void onSuccess(RecommendedStarHunterBean response) {
                 starHunterAdapter.setData(response);
                 storyAdapter.setData(response);
-
-                recommmended_starHunter_hlv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-                recommended_story_hlv.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-
+                recommmended_starHunter_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                recommended_story_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 recommmended_starHunter_hlv.setAdapter(starHunterAdapter);
                 recommended_story_hlv.setAdapter(storyAdapter);
             }
@@ -128,7 +129,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
             }
         });
-
         /**
          * 推荐页面中在线活动,抢鲜体验,特色玩法的网络解析, 编辑精选的网路解析
          */
@@ -148,10 +148,10 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 recommendedAdapter.setData(imgUrl);
                 viewPager.setAdapter(recommendedAdapter);
 
-                recommended_hlv_first.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-                recommended_hlv_features.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-                recommended_hlv_line.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-                recommended_hlv_blockbuster.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+                recommended_hlv_first.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                recommended_hlv_features.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                recommended_hlv_line.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                recommended_hlv_blockbuster.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 
                 recommended_hlv_first.setAdapter(firstAdapter);
                 recommended_hlv_features.setAdapter(featuresAdapter);
@@ -180,7 +180,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommend_tv_six.startAnimation(AnimationTextView.getAnimation().showTranslateSix());
 
         //毛玻璃效果图片
-        Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context,20)).into(recommend_iv_mbl);
+        Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context, 20)).into(recommend_iv_mbl);
 
     }
 
@@ -256,19 +256,22 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.itme_title_theme:
-                goTo(context,DialogActivity.class);
+                goTo(context, DialogActivity.class);
 
                 //ofFloat()方法的第一个参数表示动画操作的对象（可以是任意对象），
                 // 第二个参数表示操作对象的属性名字（只要是对象有的属性都可以），
                 // 第三个参数之后就是动画过渡值。当然过度值可以有一个到N个，
                 // 如果是一个值的话默认这个值是动画过渡值的结束值。如果有N个值，动画就在这N个值之间过渡。
-                ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView,"scaleX",1f,0.9f);
-                ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView,"scaleY",1f,0.9f);
+                ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView, "scaleX", 1f, 0.9f);
+                ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView, "scaleY", 1f, 0.9f);
                 set.play(oaX);
                 set.play(oaY);
                 set.start();
+                break;
+            case R.id.itme_title_tv:
+                goTo(context, AllCityActivity.class);
                 break;
         }
     }
@@ -276,8 +279,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     @Override
     public void onResume() {
         super.onResume();
-        ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView,"scaleX",0.9f,1f);
-        ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView,"scaleY",0.9f,1f);
+        ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView, "scaleX", 0.9f, 1f);
+        ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView, "scaleY", 0.9f, 1f);
         set.play(oaX);
         set.play(oaY);
         set.start();

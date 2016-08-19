@@ -5,29 +5,27 @@
     android:orientation="vertical"
     android:background="@android:color/white">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#68BBCE">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
             android:text="发现"
             android:textColor="@android:color/white" />
 
         <ImageView
             android:id="@+id/found_im_active"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_marginRight="5dp"
             android:src="@mipmap/ib_edit_product_photo" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

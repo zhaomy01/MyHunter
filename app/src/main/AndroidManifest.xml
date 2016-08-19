@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
+
         <activity android:name=".ui.activity.BreadTravelActivity"/>
         <activity android:name=".ui.activity.AsAHunterActivity"/>
         <activity android:name=".ui.activity.RecommendWebViewActivity"/>
@@ -36,7 +37,9 @@
             android:theme="@style/dialog"/>
         <activity android:name=".ui.activity.CommentWebViewActivity"/>
         <activity android:name=".ui.activity.FoundActiveActivity"/>
-
+        <activity android:name=".ui.activity.NumberLoginActivity" />
+        <activity android:name=".ui.activity.EmailLoginActivity" />
+        <activity android:name=".ui.activity.AllCityActivity"/>
 
         <activity
             android:name="com.mob.tools.MobUIShell"
