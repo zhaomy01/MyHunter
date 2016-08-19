@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.example.dllo.myhunter.model.net.NetUrl;
 import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
+import com.example.dllo.myhunter.ui.activity.FoundActiveActivity;
 import com.example.dllo.myhunter.ui.activity.RecommendWebViewActivity;
 import com.example.dllo.myhunter.ui.adapter.FoundAdapter;
 import com.squareup.picasso.Picasso;
@@ -33,6 +35,7 @@ public class FoundFragment extends AbsBaseFragment {
     private LinearLayout lLStickyHeadView;
     private TextView userName,time;
     private CircleImageView titleImage;
+    private ImageView active;
 
     @Override
     protected int setLayout() {
@@ -46,6 +49,7 @@ public class FoundFragment extends AbsBaseFragment {
         time = byView(R.id.found_tv_date_added);
         userName = byView(R.id.found_tv_username);
         titleImage = byView(R.id.found_cim_avatar_s);
+        active = byView(R.id.found_im_active);
     }
 
     @Override
@@ -104,6 +108,18 @@ public class FoundFragment extends AbsBaseFragment {
                         lLStickyHeadView.setTranslationY(0);
                     }
                 }
+            }
+        });
+
+        /**
+         * 发现旁边笔跳转
+         */
+        active.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, FoundActiveActivity.class);
+                context.startActivity(intent);
+
             }
         });
 

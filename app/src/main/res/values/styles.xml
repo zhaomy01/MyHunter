@@ -58,4 +58,29 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <style name="seting_page_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+    <style name="seting_page_view">
+        <item name="android:layout_width">match_parent</item>3
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#d6d6d6</item>
+    </style>
+    <style name="account_page_tv_one">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#888888</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+    <style name="account_page_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">#d6d6d6</item>
+
+    </style>
 </resources>

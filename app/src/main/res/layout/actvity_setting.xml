@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#68BBCE">
+
+        <ImageView
+            android:id="@+id/found_active_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="设置"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="退出"
+            android:textColor="#ffffff"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp"
+                android:text="个人设置"
+                android:textColor="#888888"
+                android:textSize="10sp" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="账户设置" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="设置新密码" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="添加新朋友" />
+
+            <View style="@style/seting_page_view" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统设置"
+                android:textColor="#888888"
+                android:layout_marginTop="30dp"
+                android:textSize="10sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="推送通知设置" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="连接社交网络" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="软件地图设置" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="清空缓存" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="关于我们" />
+
+            <View style="@style/seting_page_view" />
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="去评分" />
+
+            <View style="@style/seting_page_view" />
+
+            <TextView
+                style="@style/seting_page_tv"
+                android:text="意见反馈" />
+
+            <View style="@style/seting_page_view" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
