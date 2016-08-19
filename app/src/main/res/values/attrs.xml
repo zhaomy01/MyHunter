@@ -9,5 +9,9 @@
         <attr name="sub_btn_duration" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="fog">
+        <attr name="fog_image" format="reference" />
+        <attr name="stroke_width" format="integer" />
+    </declare-styleable>
 
 </resources>

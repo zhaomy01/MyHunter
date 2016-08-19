@@ -35,6 +35,8 @@ public class HorizontalListView extends AdapterView<ListAdapter>{
     private boolean mDataChanged = false;
 
 
+
+
     public HorizontalListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();

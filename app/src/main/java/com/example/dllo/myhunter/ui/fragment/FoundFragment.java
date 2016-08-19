@@ -1,5 +1,7 @@
 package com.example.dllo.myhunter.ui.fragment;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +35,8 @@ public class FoundFragment extends AbsBaseFragment {
     private LinearLayout lLStickyHeadView;
     private TextView userName,time;
     private CircleImageView titleImage;
+    private AnimatorSet set;
+    private View contentView;//获取根布局里的view
 
     @Override
     protected int setLayout() {
@@ -50,6 +54,9 @@ public class FoundFragment extends AbsBaseFragment {
 
     @Override
     protected void initDatas() {
+        set = new AnimatorSet();
+        contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
+
         data = new ArrayList<>();
         foundAdapter = new FoundAdapter(context);
         DlaHttp.getInstance().startRequest(NetUrl.FOUND_URL, FoundBean.class, new OnHttpCallback<FoundBean>() {
@@ -76,8 +83,7 @@ public class FoundFragment extends AbsBaseFragment {
 
             }
         });
-
-
+        
         /**
          * 标题悬浮
          */
@@ -107,7 +113,16 @@ public class FoundFragment extends AbsBaseFragment {
             }
         });
 
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ObjectAnimator oaX = ObjectAnimator.ofFloat(contentView,"scaleX",0.9f,1f);
+        ObjectAnimator oaY = ObjectAnimator.ofFloat(contentView,"scaleY",0.9f,1f);
+        set.play(oaX);
+        set.play(oaY);
+        set.start();
     }
 
 }

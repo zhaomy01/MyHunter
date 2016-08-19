@@ -55,6 +55,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.main_rb_recommended:
+
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
                 break;
             case R.id.main_rb_found:
