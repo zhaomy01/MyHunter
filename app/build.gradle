@@ -32,4 +32,16 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile 'com.android.support:design:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile files('libs/ShareSDK-QZone-2.7.6.jar')
+    compile files('libs/ShareSDK-QQ-2.7.6.jar')
+    compile files('libs/MobTools-2016.0816.1507.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.7.6.jar')
+    compile files('libs/ShareSDK-TencentWeibo-2.7.6.jar')
+    compile files('libs/MobCommons-2016.0816.1507.jar')
+    compile files('libs/ShareSDK-Core-2.7.6.jar')
+    compile files('libs/ShareSDK-Email-2.7.6.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.7.6.jar')
+    compile files('libs/ShareSDK-Wechat-2.7.6.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-2.7.6.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.7.6.jar')
 }

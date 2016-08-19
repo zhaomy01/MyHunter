@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#68BBCE">
+
+        <ImageView
+            android:id="@+id/found_active_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="账户设置"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_launcher" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/account_page_tv_one"
+                android:text="用户名" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="aaaaaa" />
+
+            <View style="@style/account_page_view" />
+
+            <TextView
+                style="@style/account_page_tv_one"
+                android:text="手机号码" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未填写" />
+
+            <View style="@style/account_page_view" />
+
+            <TextView
+                style="@style/account_page_tv_one"
+                android:text="电子邮箱" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未绑定" />
+
+            <View style="@style/account_page_view" />
+
+            <TextView
+                style="@style/account_page_tv_one"
+                android:text="地区" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未绑定" />
+
+            <View style="@style/account_page_view" />
+
+            <LinearLayout
+                android:id="@+id/account_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/account_page_tv_one"
+                    android:text="性别" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女" />
+
+                <View style="@style/account_page_view" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/account_page_tv_one"
+                    android:text="生日" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未填写" />
+
+                <View style="@style/account_page_view" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/account_page_tv_one"
+                android:text="个人介绍" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未填写" />
+
+            <View style="@style/account_page_view" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

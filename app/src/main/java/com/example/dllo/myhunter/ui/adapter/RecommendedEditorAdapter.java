@@ -1,6 +1,7 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         editorHolder.textView_like_counts.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getLike_count()));
         editorHolder.textView_price.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getPrice()));
         Picasso.with(context).load(data.getData().getOther_products().getProduct_list().get(position).getTitle_page()).into(editorHolder.imageView_top);
-        Picasso.with(context).load(data.getData().getOther_products().getProduct_list().get(position).getUser().getAvatar_l()).into(editorHolder.circleImageView_icon);
+        Picasso.with(context).load(data.getData().getOther_products().getProduct_list().get(position).getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(editorHolder.circleImageView_icon);
         editorHolder.button_one.setText(data.getData().getOther_products().getProduct_list().get(position).getTab_list().get(0));
         editorHolder.button_two.setText(data.getData().getOther_products().getProduct_list().get(position).getTab_list().get(1));
         return convertView;

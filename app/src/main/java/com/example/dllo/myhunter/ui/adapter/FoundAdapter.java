@@ -1,17 +1,20 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.FoundBean;
 import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
+import com.example.dllo.myhunter.ui.activity.CommentWebViewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -64,7 +67,7 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
         if (data.get(0).getData().getFeeds().get(position).getProduct() == null) {
         } else {
 
-            if (position == 0 ){
+            if (position == 0) {
                 Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
                 holder.found_tv_username.setText(data.get(0).getData().getFeeds().get(position).getUser().getUsername());
                 holder.found_tv_date_added.setText(data.get(0).getData().getFeeds().get(position).getDate_added());
@@ -86,29 +89,28 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
                 holder.found_tv_comment_count.setText(data.get(0).getData().getFeeds().get(position).getComment_count() + "");
 
                 holder.itemView.setTag(FIRST_STICKY_VIEW);
-            }else{
-                if (!TextUtils.equals(bean.getUser().getAvatar_s(),data.get(0).getData().getFeeds().get(position-1).getUser().getAvatar_s())){
+            } else {
+                if (!TextUtils.equals(bean.getUser().getAvatar_s(), data.get(0).getData().getFeeds().get(position - 1).getUser().getAvatar_s())) {
                     holder.found_cim_avatar_s.setVisibility(View.VISIBLE);
                     Picasso.with(context).load(bean.getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
                     holder.itemView.setTag(HAS_STICKY_VIEW);
-                }else {
+                } else {
                     holder.found_cim_avatar_s.setVisibility(View.VISIBLE);
                     holder.itemView.setTag(NONE_STICKY_VIEW);
                 }
-                if (!TextUtils.equals(bean.getUser().getUsername(),data.get(0).getData().getFeeds().get(position-1).getUser().getUsername())){
+                if (!TextUtils.equals(bean.getUser().getUsername(), data.get(0).getData().getFeeds().get(position - 1).getUser().getUsername())) {
                     holder.found_tv_username.setText(bean.getUser().getUsername());
                     holder.found_tv_username.setVisibility(View.VISIBLE);
                     holder.itemView.setTag(HAS_STICKY_VIEW);
-                }else {
+                } else {
                     holder.found_tv_username.setVisibility(View.VISIBLE);
                     holder.itemView.setTag(NONE_STICKY_VIEW);
                 }
-                if (!TextUtils.equals(bean.getDate_added(),data.get(0).getData().getFeeds().get(position - 1).getDate_added())){
+                if (!TextUtils.equals(bean.getDate_added(), data.get(0).getData().getFeeds().get(position - 1).getDate_added())) {
                     holder.found_tv_date_added.setText(bean.getDate_added());
                     holder.found_tv_date_added.setVisibility(View.VISIBLE);
                     holder.itemView.setTag(HAS_STICKY_VIEW);
-                }
-                else {
+                } else {
                     holder.found_tv_date_added.setVisibility(View.VISIBLE);
                     holder.itemView.setTag(NONE_STICKY_VIEW);
                 }
@@ -145,20 +147,29 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
                 onRecycleListenerInterface.onRecycleListenerInterface(pos);
             }
         });
+        holder.found_tv_comment_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentWebViewActivity.class);
+                intent.putExtra("path","http://web.breadtrip.com/hunter/product/13404/comments/");
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return data != null ?data.get(0).getData().getFeeds().size() : 0;
+        return data != null ? data.get(0).getData().getFeeds().size() : 0;
     }
 
-   public class MyHolder extends RecyclerView.ViewHolder {
+    public class MyHolder extends RecyclerView.ViewHolder {
 
         public CircleImageView found_cim_avatar_s;
-       public TextView found_tv_username, found_tv_date_added;
-       private ImageView found_im_cover;
+        public TextView found_tv_username, found_tv_date_added;
+        private ImageView found_im_cover;
         private TextView found_tv_title, found_tv_address, found_tv_price, found_tv_text,
                 found_tv_like_count, found_tv_comment_count;
+        private LinearLayout found_ll_comment;
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -172,6 +183,7 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
             found_tv_text = (TextView) itemView.findViewById(R.id.found_tv_text);
             found_tv_like_count = (TextView) itemView.findViewById(R.id.found_tv_like_count);
             found_tv_comment_count = (TextView) itemView.findViewById(R.id.found_tv_comment_count);
+            found_ll_comment = (LinearLayout) itemView.findViewById(R.id.found_item_ll);
 //点赞头像
             for (int i = 0; i < imgsId.length; i++) {
                 imgs[i] = (CircleImageView) itemView.findViewById(imgsId[i]);

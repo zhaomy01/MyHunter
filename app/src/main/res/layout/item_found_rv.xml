@@ -23,11 +23,11 @@
             android:layout_height="10dp" />
 
         <TextView
-            android:textColor="#4c4c4c"
             android:id="@+id/found_tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:textColor="#4c4c4c" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -144,12 +144,12 @@
             </FrameLayout>
 
             <TextView
-                android:textColor="#9e9e9e"
                 android:id="@+id/found_tv_like_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="20dp"
+                android:textColor="#9e9e9e"
                 android:textSize="12sp" />
 
             <View
@@ -159,26 +159,15 @@
                 android:layout_margin="15dp"
                 android:background="#d6d6d6" />
 
-            <LinearLayout
-                android:id="@+id/item_found_comment"
+            <TextView
+                android:id="@+id/found_tv_comment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginRight="15dp"
+                android:drawableLeft="@mipmap/ic_comments"
+                android:textColor="#d6d6d6" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/ic_comments" />
-
-                <TextView
-                    android:textColor="#d6d6d6"
-                    android:id="@+id/found_tv_comment_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp" />
-            </LinearLayout>
         </LinearLayout>
 
         <View
