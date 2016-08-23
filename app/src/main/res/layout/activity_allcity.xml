@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="搜索城市名称或拼音"
+            android:hint="@string/search_name"
             android:textColor="@android:color/white"
             android:textColorHint="#A3D7E3"
             android:textCursorDrawable="@drawable/shape_cursor"
@@ -80,6 +80,4 @@
             android:layout_centerHorizontal="true"
             android:src="@mipmap/abc_ic_clear_mtrl_alpha" />
     </RelativeLayout>
-
-
 </LinearLayout>

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="30dp"
-            android:text="无密码快捷登录"
+            android:text="@string/no_password"
             android:textColor="#BDE3EB" />
 
     </RelativeLayout>
@@ -125,7 +125,7 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/shape_button_register"
-        android:text="立即登录"
+        android:text="@string/login"
         android:textColor="@android:color/white"
         android:textSize="22sp" />
 

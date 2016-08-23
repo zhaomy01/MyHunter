@@ -1,6 +1,7 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
+import com.example.dllo.myhunter.model.bean.AllCityHotJumpBean;
 import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
+import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -19,10 +24,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class RecommendedStarHunteAdapter extends RecyclerView.Adapter<RecommendedStarHunteAdapter.MyHolder> {
     private RecommendedStarHunterBean data;
+    private AllCityHotJumpBean databean;
     private Context context;
+    private OnRecycleListenerInterface recycleListenerInterface;
+
+    public void setDatabean(AllCityHotJumpBean databean) {
+        this.databean = databean;
+        notifyDataSetChanged();
+    }
 
     public RecommendedStarHunteAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setRecycleListenerInterface(OnRecycleListenerInterface recycleListenerInterface) {
+        this.recycleListenerInterface = recycleListenerInterface;
     }
 
     public void setData(RecommendedStarHunterBean data) {
@@ -37,17 +53,30 @@ public class RecommendedStarHunteAdapter extends RecyclerView.Adapter<Recommende
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
-        holder.textView_name.setText(data.getData().getHunters().getHunterLists().get(position).getUsername());
-        holder.textView_content.setText(data.getData().getHunters().getHunterLists().get(position).getDescription());
-        Picasso.with(context).load(data.getData().getHunters().getHunterLists().get(position).getProduct_image()).into(holder.imageView_top);
-        Picasso.with(context).load(data.getData().getHunters().getHunterLists().get(position).getAvatar_l()).into(holder.circleImageView);
+    public void onBindViewHolder(final MyHolder holder, int position) {
+        if (recycleListenerInterface != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getAdapterPosition();
+                    recycleListenerInterface.onRecycleListenerInterface(pos);
+                }
+            });
+
+        }
+        RecommendedStarHunterBean.DataBean.HunteBean.HunterList bean = data.getData().getHunters().getHunterLists().get(position);
+        holder.textView_name.setText(bean.getUsername());
+        holder.textView_content.setText(bean.getDescription());
+        Picasso.with(context).load(bean.getProduct_image()).config(Bitmap.Config.RGB_565).into(holder.imageView_top);
+        Picasso.with(context).load(bean.getAvatar_l()).config(Bitmap.Config.RGB_565).into(holder.circleImageView);
     }
 
     @Override
     public int getItemCount() {
         return data.getData().getHunters().getHunterLists().size();
     }
+
+
 
     class MyHolder extends RecyclerView.ViewHolder {
         private TextView textView_name, textView_content;

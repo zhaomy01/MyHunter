@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:text="GPS定位失败,请点击重试"
+                android:text="@string/GPSfail"
                 android:textColor="#A3D7E3" />
 
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:text="海外热门目的地"
+                android:text="@string/over_hot"
                 android:textColor="#A3D7E3" />
 
             <LinearLayout
@@ -51,7 +51,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
-                android:text="全部地区"
+                android:text="@string/all_region"
                 android:textColor="#A3D7E3" />
 
             <com.example.dllo.myhunter.view.MyExpandableListView

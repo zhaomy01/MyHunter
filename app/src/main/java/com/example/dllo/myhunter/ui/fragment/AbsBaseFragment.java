@@ -82,4 +82,5 @@ public abstract class AbsBaseFragment extends Fragment {
         context.startActivity(intent);
     }
 
+
 }

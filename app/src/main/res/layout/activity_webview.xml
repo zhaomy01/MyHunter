@@ -45,6 +45,17 @@
             android:src="@mipmap/btn_web_share_normal"
             android:layout_gravity="center"
             />
+<<<<<<< HEAD
+=======
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/details"
+        android:layout_gravity="center"/>
+
+>>>>>>> feature/yangliu_全部城市点击事件跳转推荐页面
     </LinearLayout>
 
 

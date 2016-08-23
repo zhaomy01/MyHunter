@@ -1,6 +1,7 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 /**
  * 推荐页面的适配器
@@ -40,24 +43,28 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
         if (type == 0) {
-            holder.tv_title.setText(data.getData().getProduct_modules().get(0).getProduct_list().get(position).getTitle());
-            holder.tv_number.setText(data.getData().getProduct_modules().get(0).getProduct_list().get(position).getPrice());
-            Picasso.with(context).load(data.getData().getProduct_modules().get(0).getProduct_list().get(position).getTitle_page()).into(holder.iv);
+            RecommendedBean.DataBean.ProductModulesBean.Product bean0 = data.getData().getProduct_modules().get(0).getProduct_list().get(position);
+            holder.tv_title.setText(bean0.getTitle());
+            holder.tv_number.setText(bean0.getPrice());
+            Picasso.with(context).load(bean0.getTitle_page()).into(holder.iv);
         }
         if (type == 1){
-            holder.tv_title.setText(data.getData().getProduct_modules().get(1).getProduct_list().get(position).getTitle());
-            holder.tv_number.setText(data.getData().getProduct_modules().get(1).getProduct_list().get(position).getPrice());
-            Picasso.with(context).load(data.getData().getProduct_modules().get(1).getProduct_list().get(position).getTitle_page()).into(holder.iv);
+            RecommendedBean.DataBean.ProductModulesBean.Product bean1 = data.getData().getProduct_modules().get(1).getProduct_list().get(position);
+            holder.tv_title.setText(bean1.getTitle());
+            holder.tv_number.setText(bean1.getPrice());
+            Picasso.with(context).load(bean1.getTitle_page()).config(Bitmap.Config.RGB_565).into(holder.iv);
         }
         if (type == 2){
-            holder.tv_title.setText(data.getData().getProduct_modules().get(2).getProduct_list().get(position).getTitle());
-            holder.tv_number.setText(data.getData().getProduct_modules().get(2).getProduct_list().get(position).getPrice());
-            Picasso.with(context).load(data.getData().getProduct_modules().get(2).getProduct_list().get(position).getTitle_page()).into(holder.iv);
+            RecommendedBean.DataBean.ProductModulesBean.Product bean2 = data.getData().getProduct_modules().get(2).getProduct_list().get(position);
+            holder.tv_title.setText(bean2.getTitle());
+            holder.tv_number.setText(bean2.getPrice());
+            Picasso.with(context).load(bean2.getTitle_page()).into(holder.iv);
         }
         if (type == 3){
-            holder.tv_title.setText(data.getData().getProduct_modules().get(3).getProduct_list().get(position).getTitle());
-            holder.tv_number.setText(data.getData().getProduct_modules().get(3).getProduct_list().get(position).getPrice());
-            Picasso.with(context).load(data.getData().getProduct_modules().get(3).getProduct_list().get(position).getTitle_page()).into(holder.iv);
+            RecommendedBean.DataBean.ProductModulesBean.Product bean3 = data.getData().getProduct_modules().get(3).getProduct_list().get(position);
+            holder.tv_title.setText(bean3.getTitle());
+            holder.tv_number.setText(bean3.getPrice());
+            Picasso.with(context).load(bean3.getTitle_page()).into(holder.iv);
         }
     }
 

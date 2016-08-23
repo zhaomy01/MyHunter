@@ -14,7 +14,7 @@
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发现"
+            android:text="@string/find"
             android:textColor="@android:color/white" />
 
         <ImageView
