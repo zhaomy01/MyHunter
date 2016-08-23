@@ -37,8 +37,6 @@ public class AllCityActivity extends AbsBaseActivity implements View.OnClickList
         imageView = byView(R.id.allcity_delete);
         imageView_back = byView(R.id.back_btn);
         tabLayout = byView(R.id.tabLayout);
-
-
     }
 
     @Override
@@ -53,8 +51,6 @@ public class AllCityActivity extends AbsBaseActivity implements View.OnClickList
         viewPagerAdapter = new AllCityViewpagerAdapter(getSupportFragmentManager(),fragments);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
-
     }
 
     @Override

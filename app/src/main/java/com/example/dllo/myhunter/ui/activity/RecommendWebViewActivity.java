@@ -12,6 +12,7 @@ import com.example.dllo.myhunter.R;
  * 推荐页面二级跳转的webView页面
  */
 public class RecommendWebViewActivity extends AbsBaseActivity {
+    private String PATH = "path";
     private WebView webView;
 
     @Override
@@ -28,7 +29,7 @@ public class RecommendWebViewActivity extends AbsBaseActivity {
     @Override
     protected void initDatas() {
         Intent intent = getIntent();
-        String path = intent.getStringExtra("path");
+        String path = intent.getStringExtra(PATH);
         //设置WebView属性,能够执行JavaScript脚本
         //设置web视图
         webView.getSettings().setJavaScriptEnabled(true);

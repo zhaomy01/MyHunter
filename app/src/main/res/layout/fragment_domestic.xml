@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#68BBCE"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical">
 
     <ScrollView
@@ -19,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:text="GPS定位失败,请点击重试"
+                android:text="@string/GPSfail"
                 android:textColor="#A3D7E3" />
 
             <TextView
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:text="国内热门城市"
+                android:text="@string/domestic_hot"
                 android:textColor="#A3D7E3" />
 
             <LinearLayout
@@ -51,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
-                android:text="全部城市"
+                android:text="@string/allcity"
                 android:textColor="#A3D7E3" />
 
             <com.example.dllo.myhunter.view.VerticalListView

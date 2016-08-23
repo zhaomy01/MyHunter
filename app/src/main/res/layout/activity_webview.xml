@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="活动详情"
+        android:text="@string/details"
         android:layout_gravity="center"/>
 
     </LinearLayout>

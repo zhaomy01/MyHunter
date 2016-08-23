@@ -65,25 +65,25 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
         } else {
 
             if (position == 0 ){
-                Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
-                holder.found_tv_username.setText(data.get(0).getData().getFeeds().get(position).getUser().getUsername());
-                holder.found_tv_date_added.setText(data.get(0).getData().getFeeds().get(position).getDate_added());
+                Picasso.with(context).load(bean.getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
+                holder.found_tv_username.setText(bean.getUser().getUsername());
+                holder.found_tv_date_added.setText(bean.getDate_added());
                 holder.found_cim_avatar_s.setVisibility(View.VISIBLE);
                 holder.found_tv_username.setVisibility(View.VISIBLE);
                 holder.found_tv_date_added.setVisibility(View.VISIBLE);
 
-                holder.found_tv_title.setText(data.get(0).getData().getFeeds().get(position).getProduct().getTitle());
-                holder.found_tv_address.setText(data.get(0).getData().getFeeds().get(position).getProduct().getAddress());
-                holder.found_tv_price.setText(data.get(0).getData().getFeeds().get(position).getProduct().getPrice());
-                holder.found_tv_text.setText(data.get(0).getData().getFeeds().get(position).getProduct().getText());
-                Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getProduct().getCover()).into(holder.found_im_cover);
+                holder.found_tv_title.setText(bean.getProduct().getTitle());
+                holder.found_tv_address.setText(bean.getProduct().getAddress());
+                holder.found_tv_price.setText(bean.getProduct().getPrice());
+                holder.found_tv_text.setText(bean.getProduct().getText());
+                Picasso.with(context).load(bean.getProduct().getCover()).into(holder.found_im_cover);
                 // 点赞头像
                 int num = data.get(0).getData().getFeeds().get(position).getLiked_users().size() > 5 ? 5 : data.get(0).getData().getFeeds().get(position).getLiked_users().size();
                 for (int i = 0; i < num; i++) {
                     Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getLiked_users().get(i).getAvatar_s()).into(imgs[i]);
                 }
-                holder.found_tv_like_count.setText(data.get(0).getData().getFeeds().get(position).getLiked_count() + "个人赞");
-                holder.found_tv_comment_count.setText(data.get(0).getData().getFeeds().get(position).getComment_count() + "");
+                holder.found_tv_like_count.setText(bean.getLiked_count() + "个人赞");
+                holder.found_tv_comment_count.setText(bean.getComment_count() + "");
 
                 holder.itemView.setTag(FIRST_STICKY_VIEW);
             }else{
@@ -115,22 +115,21 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
 
             }
 
-
-            Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
-            holder.found_tv_username.setText(data.get(0).getData().getFeeds().get(position).getUser().getUsername());
-            holder.found_tv_date_added.setText(data.get(0).getData().getFeeds().get(position).getDate_added());
-            holder.found_tv_title.setText(data.get(0).getData().getFeeds().get(position).getProduct().getTitle());
-            holder.found_tv_address.setText(data.get(0).getData().getFeeds().get(position).getProduct().getAddress());
-            holder.found_tv_price.setText(data.get(0).getData().getFeeds().get(position).getProduct().getPrice());
-            holder.found_tv_text.setText(data.get(0).getData().getFeeds().get(position).getProduct().getText());
-            Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getProduct().getCover()).into(holder.found_im_cover);
+            Picasso.with(context).load(bean.getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
+            holder.found_tv_username.setText(bean.getUser().getUsername());
+            holder.found_tv_date_added.setText(bean.getDate_added());
+            holder.found_tv_title.setText(bean.getProduct().getTitle());
+            holder.found_tv_address.setText(bean.getProduct().getAddress());
+            holder.found_tv_price.setText(bean.getProduct().getPrice());
+            holder.found_tv_text.setText(bean.getProduct().getText());
+            Picasso.with(context).load(bean.getProduct().getCover()).into(holder.found_im_cover);
             // 点赞头像
             int num = data.get(0).getData().getFeeds().get(position).getLiked_users().size() > 5 ? 5 : data.get(0).getData().getFeeds().get(position).getLiked_users().size();
             for (int i = 0; i < num; i++) {
                 Picasso.with(context).load(data.get(0).getData().getFeeds().get(position).getLiked_users().get(i).getAvatar_s()).into(imgs[i]);
             }
-            holder.found_tv_like_count.setText(data.get(0).getData().getFeeds().get(position).getLiked_count() + "个人赞");
-            holder.found_tv_comment_count.setText(data.get(0).getData().getFeeds().get(position).getComment_count() + "");
+            holder.found_tv_like_count.setText(bean.getLiked_count() + "个人赞");
+            holder.found_tv_comment_count.setText(bean.getComment_count() + "");
             holder.found_tv_date_added.setContentDescription(bean.getDate_added());
             holder.found_cim_avatar_s.setContentDescription(bean.getUser().getAvatar_s());
             holder.found_tv_username.setContentDescription(bean.getUser().getUsername());

@@ -4,8 +4,51 @@
     android:layout_height="match_parent"
     android:background="#fbfbfb"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#4abdcc" />
 
-    <include layout="@layout/itme_title"/>
+    <TextView
+        android:id="@+id/item_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:text="@string/allcity"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/item_title_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@id/item_title_tv"
+        android:background="@mipmap/img_sort_triangle" />
+
+    <TextView
+        android:id="@+id/itme_title_mblr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/itme_title_theme"
+        android:layout_width="20dp"
+        android:layout_height="18dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:background="@mipmap/icon_menu_normal" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:text="搜索活动关键字,商圈,分类"
+                    android:text="@string/search_class"
                     android:textColor="#bcbcbc" />
             </LinearLayout>
 
@@ -63,14 +106,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="重磅推荐"
+                    android:text="@string/blockbuster"
                     android:textColor="#434343"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="#cacaca" />
 
                 <ImageView
@@ -123,7 +166,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="全部"
+                                android:text="@string/all_"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
 
@@ -141,7 +184,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="城市微旅行"
+                                android:text="@string/city_travle"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
 
@@ -160,7 +203,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="本地生活"
+                                android:text="@string/local"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
                     </LinearLayout>
@@ -186,7 +229,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="技能get"
+                                android:text="@string/get"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
 
@@ -204,7 +247,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="摄影"
+                                android:text="@string/ciname"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
 
@@ -222,7 +265,7 @@
                                 android:background="@drawable/shape_reco_tv"
                                 android:paddingLeft="5dp"
                                 android:paddingRight="5dp"
-                                android:text="文化体验"
+                                android:text="@string/articla"
                                 android:textColor="@android:color/white" />
                         </LinearLayout>
                     </LinearLayout>
@@ -242,14 +285,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="在线活动"
+                    android:text="@string/activi"
                     android:textColor="#434343"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="#cacaca" />
 
                 <ImageView
@@ -277,14 +320,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="抢鲜体验"
+                    android:text="@string/experience"
                     android:textColor="#434343"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="#cacaca" />
 
                 <ImageView
@@ -312,14 +355,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="特色玩法"
+                    android:text="@string/play"
                     android:textColor="#434343"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="#cacaca" />
 
                 <ImageView
@@ -342,7 +385,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:text="明星猎人"
+                android:text="@string/star_hunter"
                 android:textColor="#434343"
                 android:textSize="13sp" />
 
@@ -363,14 +406,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="体验故事"
+                    android:text="@string/to_story"
                     android:textColor="#434343"
                     android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="#cacaca" />
 
                 <ImageView
@@ -393,7 +436,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:text="编辑精选"
+                android:text="@string/select"
                 android:textColor="#434343"
                 android:textSize="13sp" />
 

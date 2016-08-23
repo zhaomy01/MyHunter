@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 发现页面
  */
 public class FoundFragment extends AbsBaseFragment {
-
+    private String PATH = "path";
     private RecyclerView recyclerView;
     private FoundAdapter foundAdapter;
     private List<FoundBean> data;
@@ -65,7 +65,7 @@ public class FoundFragment extends AbsBaseFragment {
                         int url = response.getData().getFeeds().get(pos).getProduct_id();
                         final Intent intent = new Intent(context, RecommendWebViewActivity.class);
                         String foundWebUrl = NetUrl.FOUND_WEBVIEW_START + url + NetUrl.FOUND_WEBVIEW_END;
-                        intent.putExtra("path", foundWebUrl);
+                        intent.putExtra(PATH, foundWebUrl);
                         context.startActivity(intent);
                     }
                 });

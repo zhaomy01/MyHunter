@@ -14,6 +14,8 @@ import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -60,14 +62,15 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         } else {
             editorHolder = (EditorHolder) convertView.getTag();
         }
-        editorHolder.textView_content.setText(data.getData().getOther_products().getProduct_list().get(position).getTitle());
-        editorHolder.textView_address.setText(data.getData().getOther_products().getProduct_list().get(position).getAddress());
-        editorHolder.textView_like_counts.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getLike_count()));
-        editorHolder.textView_price.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getPrice()));
-        Picasso.with(context).load(data.getData().getOther_products().getProduct_list().get(position).getTitle_page()).into(editorHolder.imageView_top);
-        Picasso.with(context).load(data.getData().getOther_products().getProduct_list().get(position).getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(editorHolder.circleImageView_icon);
-        editorHolder.button_one.setText(data.getData().getOther_products().getProduct_list().get(position).getTab_list().get(0));
-        editorHolder.button_two.setText(data.getData().getOther_products().getProduct_list().get(position).getTab_list().get(1));
+        RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
+        editorHolder.textView_content.setText(bean.getTitle());
+        editorHolder.textView_address.setText(bean.getAddress());
+        editorHolder.textView_like_counts.setText(String.valueOf(bean.getLike_count()));
+        editorHolder.textView_price.setText(String.valueOf(bean.getPrice()));
+        Picasso.with(context).load(bean.getTitle_page()).config(Bitmap.Config.RGB_565).into(editorHolder.imageView_top);
+        Picasso.with(context).load(bean.getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(editorHolder.circleImageView_icon);
+        editorHolder.button_one.setText(bean.getTab_list().get(0));
+        editorHolder.button_two.setText(bean.getTab_list().get(1));
         return convertView;
     }
 

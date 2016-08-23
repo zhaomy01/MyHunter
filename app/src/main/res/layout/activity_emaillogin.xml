@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="30dp"
-            android:text="找回密码"
+            android:text="@string/find_password"
             android:textColor="#BDE3EB" />
     </RelativeLayout>
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@null"
-            android:hint="用户名/邮箱"
+            android:hint="@string/user_email"
             android:textColor="@android:color/white"
             android:textColorHint="#BDE3EB"
             android:textCursorDrawable="@drawable/shape_cursor" />
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@null"
-            android:hint="账号密码"
+            android:hint="@string/userpassword"
             android:textColor="@android:color/white"
             android:textColorHint="#BDE3EB"
             android:textCursorDrawable="@drawable/shape_cursor" />
@@ -69,7 +69,7 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/shape_button_register"
-        android:text="立即登录"
+        android:text="@string/login"
         android:textColor="@android:color/white"
         android:textSize="22sp" />
 </LinearLayout>
