@@ -71,7 +71,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="更多"
-                    android:textColor="#cacaca" />
+                    android:textColor="#cacaca"
+                    android:id="@+id/recommend_tv_blockbuster"/>
 
                 <ImageView
                     android:layout_width="wrap_content"

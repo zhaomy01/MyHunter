@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
+import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -19,6 +20,12 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
     private RecommendedBean data;
     private Context context;
     private int type;
+    private OnRecycleListenerInterface onRecycleListenerInterface;
+
+    public void setOnRecycleListenerInterface(OnRecycleListenerInterface onRecycleListenerInterface) {
+        this.onRecycleListenerInterface = onRecycleListenerInterface;
+        notifyDataSetChanged();
+    }
 
     public RecommendedRcAdapter(Context context, int type) {
         this.context = context;
@@ -38,7 +45,7 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         if (type == 0) {
             holder.tv_title.setText(data.getData().getProduct_modules().get(0).getProduct_list().get(position).getTitle());
             holder.tv_number.setText(data.getData().getProduct_modules().get(0).getProduct_list().get(position).getPrice());
@@ -59,6 +66,15 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
             holder.tv_number.setText(data.getData().getProduct_modules().get(3).getProduct_list().get(position).getPrice());
             Picasso.with(context).load(data.getData().getProduct_modules().get(3).getProduct_list().get(position).getTitle_page()).into(holder.iv);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+                onRecycleListenerInterface.onRecycleListenerInterface(pos);
+            }
+        });
+
     }
 
     @Override

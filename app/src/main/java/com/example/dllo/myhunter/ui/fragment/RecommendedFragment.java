@@ -3,6 +3,7 @@ package com.example.dllo.myhunter.ui.fragment;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +18,12 @@ import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
 import com.example.dllo.myhunter.tools.AnimationTextView;
+import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
 import com.example.dllo.myhunter.ui.activity.AllCityActivity;
 import com.example.dllo.myhunter.ui.activity.DialogActivity;
+import com.example.dllo.myhunter.ui.activity.RecommendWebViewActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
@@ -134,7 +137,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
          */
         DlaHttp.getInstance().startRequest(url, RecommendedBean.class, new OnHttpCallback<RecommendedBean>() {
             @Override
-            public void onSuccess(RecommendedBean response) {
+            public void onSuccess(final RecommendedBean response) {
                 for (int i = 0; i < response.getData().getBanners().size(); i++) {
                     String imurl = response.getData().getBanners().get(i).getImg_url();
                     imgUrl.add(imurl);
@@ -160,6 +163,61 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 editorAdapter.setData(response);
                 recommended_vlv_editor.setAdapter(editorAdapter);
 
+
+                /**
+                 * 重磅推荐
+                 * 跳转到WebView
+                 */
+                blockbusterAdapter.setOnRecycleListenerInterface(new OnRecycleListenerInterface() {
+                    @Override
+                    public void onRecycleListenerInterface(int pos) {
+                        int blockbusterUrl = response.getData().getProduct_modules().get(0).getProduct_list().get(pos).getProduct_id();
+                        String urlB = "http://web.breadtrip.com/hunter/product/"+ blockbusterUrl+"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E9%87%8D%E7%A3%85%E6%8E%A8%E8%8D%90_A_1";
+                        Intent intent = new Intent(context, RecommendWebViewActivity.class);
+                        intent.putExtra("path",urlB);
+                        context.startActivity(intent);
+                    }
+                });
+                /**
+                 * 在线
+                 */
+                lineAdapter.setOnRecycleListenerInterface(new OnRecycleListenerInterface() {
+                    @Override
+                    public void onRecycleListenerInterface(int pos) {
+                        int lineUrl = response.getData().getProduct_modules().get(1).getProduct_list().get(pos).getProduct_id();
+                        String urlLine = "http://web.breadtrip.com/hunter/product/"+lineUrl +"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E5%9C%A8%E7%BA%BF%E6%B4%BB%E5%8A%A8_B_1";
+                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
+                        intent.putExtra("path",urlLine);
+                        context.startActivity(intent);
+                    }
+                });
+                /**
+                 * 抢先体验
+                 */
+                firstAdapter.setOnRecycleListenerInterface(new OnRecycleListenerInterface() {
+                    @Override
+                    public void onRecycleListenerInterface(int pos) {
+                        int fristUrl = response.getData().getProduct_modules().get(2).getProduct_list().get(pos).getProduct_id();
+                        String fristWebView = "http://web.breadtrip.com/hunter/product/" + fristUrl+"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E6%8A%A2%E9%B2%9C%E4%BD%93%E9%AA%8C_C_1";
+                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
+                        intent.putExtra("path",fristWebView);
+                        context.startActivity(intent);
+                    }
+                });
+                /**
+                 * 特色玩法
+                 */
+                featuresAdapter.setOnRecycleListenerInterface(new OnRecycleListenerInterface() {
+                    @Override
+                    public void onRecycleListenerInterface(int pos) {
+                        int featureUrl = response.getData().getProduct_modules().get(3).getProduct_list().get(pos).getProduct_id();
+                        String featureWebView = "http://web.breadtrip.com/hunter/product/" + featureUrl +"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E7%89%B9%E8%89%B2%E7%8E%A9%E6%B3%95_D_1";
+                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
+                        intent.putExtra("path",featureWebView);
+                        context.startActivity(intent);
+                    }
+                });
+
             }
 
             @Override
@@ -167,6 +225,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
             }
         });
+
 
         viewPager.setCurrentItem(300);
         handle = new Handler();
@@ -181,6 +240,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
         //毛玻璃效果图片
         Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context, 20)).into(recommend_iv_mbl);
+
 
     }
 
