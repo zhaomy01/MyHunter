@@ -18,7 +18,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * 推荐页面中体验故事——横滑Recyclerview适配器
  */
-
 public class RecommendedStoryAdapter extends RecyclerView.Adapter<RecommendedStoryAdapter.MyHolder> {
     private RecommendedStarHunterBean data;
     private Context context;
@@ -29,6 +28,7 @@ public class RecommendedStoryAdapter extends RecyclerView.Adapter<RecommendedSto
 
     public void setData(RecommendedStarHunterBean data) {
         this.data = data;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class RecommendedStoryAdapter extends RecyclerView.Adapter<RecommendedSto
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
         holder.textView_name.setText(data.getData().getSpots().getSpot_list().get(position).getUser().getName());
         holder.textView_content.setText(data.getData().getSpots().getSpot_list().get(position).getText());
         holder.textView_add.setText(data.getData().getSpots().getSpot_list().get(position).getTarget().getTitle());

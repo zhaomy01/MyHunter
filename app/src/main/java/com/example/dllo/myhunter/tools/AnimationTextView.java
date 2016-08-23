@@ -10,7 +10,6 @@ import android.view.animation.TranslateAnimation;
  */
 public class AnimationTextView {
 
-    private TranslateAnimation animation;
     private AlphaAnimation alphaAnimation;
 
     private static final class showAnima {
@@ -21,53 +20,37 @@ public class AnimationTextView {
         return showAnima.ANIMATION_TEXT_VIEW;
     }
 
-    //横移动画
-    public TranslateAnimation showTranslateOne() {
-        animation = new TranslateAnimation(0, 0, 0, 30);
-        animation.setDuration(1500);//设置动画持续时间
+    private TranslateAnimation getTranslateAnimation(int toYDelta, int durationMillis) {
+        TranslateAnimation animation = new TranslateAnimation(0, 0, 0, toYDelta);
+        animation.setDuration(durationMillis);//设置动画持续时间
         animation.setRepeatCount(-1);//设置重复次数
         animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
         return animation;
+    }
+
+    //横移动画
+    public TranslateAnimation showTranslateOne() {
+        return getTranslateAnimation(30, 1500);
     }
 
     public TranslateAnimation showTranslateTwo() {
-        animation = new TranslateAnimation(0, 0, 0, 20);
-        animation.setDuration(3000);//设置动画持续时间
-        animation.setRepeatCount(-1);//设置重复次数
-        animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-        return animation;
+        return getTranslateAnimation(20, 3000);
     }
 
     public TranslateAnimation showTranslateThree() {
-        animation = new TranslateAnimation(0, 0, 0, 30);
-        animation.setDuration(2000);//设置动画持续时间
-        animation.setRepeatCount(-1);//设置重复次数
-        animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-        return animation;
+        return getTranslateAnimation(30, 2000);
     }
 
     public TranslateAnimation showTranslateFour() {
-        animation = new TranslateAnimation(0, 0, 0, 30);
-        animation.setDuration(3000);//设置动画持续时间
-        animation.setRepeatCount(-1);//设置重复次数
-        animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-        return animation;
+        return getTranslateAnimation(30, 3000);
     }
 
     public TranslateAnimation showTranslateFive() {
-        animation = new TranslateAnimation(0, 0, 0, 20);
-        animation.setDuration(1500);//设置动画持续时间
-        animation.setRepeatCount(-1);//设置重复次数
-        animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-        return animation;
+        return getTranslateAnimation(20, 1500);
     }
 
     public TranslateAnimation showTranslateSix() {
-        animation = new TranslateAnimation(0, 0, 0, 35);
-        animation.setDuration(4000);//设置动画持续时间
-        animation.setRepeatCount(-1);//设置重复次数
-        animation.setRepeatMode(Animation.REVERSE);//设置反方向执行
-        return animation;
+        return getTranslateAnimation(35, 4000);
     }
 
     //虚化

@@ -28,8 +28,7 @@ public class OverSeaFragment extends AbsBaseFragment {
     protected void initViews() {
         overseaGridView = byView(R.id.oversea_gridview);
         expandableListView = byView(R.id.oversea_allcity_expandableListview);
-
-
+        
     }
 
     @Override

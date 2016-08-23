@@ -41,7 +41,6 @@ public class FoundFragment extends AbsBaseFragment {
     private View contentView;//获取根布局里的view
     private ImageView active;
 
-
     @Override
     protected int setLayout() {
         return R.layout.fragment_found;

@@ -86,6 +86,12 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
     protected void initDatas() {
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
@@ -103,7 +109,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         storyAdapter = new RecommendedStoryAdapter(context);
         editorAdapter = new RecommendedEditorAdapter(context);
 
-
         final String url = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=0.0&lng=0.0";
         HashMap hashMap = new HashMap();
         hashMap.put("Cookie", "bt_devid=a_7609e79906d5f8b7685635c2efcdc4118315069380bba5daf6fe972abceffb98; sessionid=c2fca75a76e4b91069be74bc76d5c622; refer_android_source=43");
@@ -115,9 +120,10 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         DlaHttp.getInstance().startRequest(url, hashMap, RecommendedStarHunterBean.class, new OnHttpCallback<RecommendedStarHunterBean>() {
 
             @Override
-            public void onSuccess(RecommendedStarHunterBean response) {
+            public void onSuccess(final RecommendedStarHunterBean response) {
                 starHunterAdapter.setData(response);
                 storyAdapter.setData(response);
+
                 recommmended_starHunter_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 recommended_story_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 recommmended_starHunter_hlv.setAdapter(starHunterAdapter);
@@ -252,6 +258,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         //Handler发布延时任务
         //第一次将该任务发布出去,之后任务内部还会发布该任务,死循环
         handle.postDelayed(rotateRunbale, 3000);
+
     }
 
     @Override

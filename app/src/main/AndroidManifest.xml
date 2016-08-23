@@ -40,6 +40,8 @@
         <activity android:name=".ui.activity.NumberLoginActivity" />
         <activity android:name=".ui.activity.EmailLoginActivity" />
         <activity android:name=".ui.activity.AllCityActivity"/>
+        <activity android:name=".ui.activity.AGlobeActivity"
+            android:theme="@style/login_act_backStyle"/>
 
         <activity
             android:name="com.mob.tools.MobUIShell"

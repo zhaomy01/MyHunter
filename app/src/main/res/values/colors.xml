@@ -13,4 +13,39 @@
     <color name="gray">#627676</color>
     <color name="yellow">#eef26c</color>
     <color name="black">#000000</color>
+
+
+    <color name="red_1">#c7f4f1</color>
+    <color name="red_2">#c3f3f8</color>
+    <color name="red_3">#4cd9eb</color>
+    <color name="red_4">#18c5dc</color>
+    <color name="red_5">#31b6e3</color>
+    <color name="red_6">#c5eaf7</color>
+    <color name="red_7">#99d1eb</color>
+    <color name="red_8">#1eacdc</color>
+    <integer-array name="button_colors">
+        <item>@color/red_1</item>
+        <item>@color/red_2</item>
+        <item>@color/red_3</item>
+        <item>@color/red_4</item>
+        <item>@color/red_5</item>
+        <item>@color/red_6</item>
+        <item>@color/red_7</item>
+        <item>@color/red_8</item>
+    </integer-array>
+
+    <array name="button_icons">
+        <item>@drawable/bg_addgoal</item>
+        <item>@drawable/ic_cashout</item>
+        <item>@drawable/ic_invest</item>
+        <item>@drawable/ic_qrcode</item>
+        <item>@drawable/bg_addgoal</item>
+        <item>@drawable/ic_cashout</item>
+        <item>@drawable/ic_invest</item>
+        <item>@drawable/ic_qrcode</item>
+    </array>
+
+
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.dllo.myhunter;
+package com.example.dllo.qingqiu;
 
 import org.junit.Test;
 

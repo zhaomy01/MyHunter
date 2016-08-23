@@ -60,7 +60,9 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         } else {
             editorHolder = (EditorHolder) convertView.getTag();
         }
-        editorHolder.textView_content.setText(data.getData().getOther_products().getProduct_list().get(position).getTitle());
+
+        RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
+        editorHolder.textView_content.setText(bean.getTitle());
         editorHolder.textView_address.setText(data.getData().getOther_products().getProduct_list().get(position).getAddress());
         editorHolder.textView_like_counts.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getLike_count()));
         editorHolder.textView_price.setText(String.valueOf(data.getData().getOther_products().getProduct_list().get(position).getPrice()));

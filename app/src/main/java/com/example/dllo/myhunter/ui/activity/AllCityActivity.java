@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dllo on 16/8/16.
  * 全部城市页面
  */
 public class AllCityActivity extends AbsBaseActivity implements View.OnClickListener {

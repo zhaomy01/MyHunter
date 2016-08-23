@@ -1,5 +1,6 @@
 package com.example.dllo.myhunter.ui.activity;
 
+import android.support.design.widget.FloatingActionButton;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.RadioGroup;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
+import com.example.dllo.myhunter.view.FanMenuButtons;
 
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
@@ -40,7 +42,6 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         main_linay_ys = byView(R.id.main_linay_ys);
     }
 
-
     @Override
     protected void initDatas() {
         recommendedFragment = new RecommendedFragment();
@@ -49,7 +50,34 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         main_ib_trip.setOnClickListener(this);
         main_radiog.check(R.id.main_rb_recommended);
         initpopup();
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.myFAB);
+        final FanMenuButtons sub = (FanMenuButtons) findViewById(R.id.myFABSubmenu);
+        if (sub != null) {
+            sub.setOnFanButtonClickListener(new FanMenuButtons.OnFanClickListener() {
+                @Override
+                public void onFanButtonClicked(int index) {
+                    if (index == 7){
+                        goTo(MainActivity.this,AGlobeActivity.class);
+                    }
+                    if (index == 6){
+                        goTo(MainActivity.this,LoginActivity.class);
+                    }
+                }
+            });
+
+            if (fab != null) {
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sub.toggleShow();
+                    }
+                });
+            }
+        }
+
     }
+
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -96,6 +124,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         plus_iv_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 goTo(MainActivity.this,AsAHunterActivity.class);
             }
         });
@@ -113,7 +142,6 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 popupWindow.dismiss();
             }
         });
-        // popupWindow.setBackgroundDrawable(new BitmapDrawable());//去背景颜色
         popupWindow.setContentView(view);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);

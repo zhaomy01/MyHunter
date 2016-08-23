@@ -1,4 +1,4 @@
-package com.example.dllo.myhunter;
+package com.example.dllo.qingqiu;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -14,4 +14,19 @@
         <attr name="stroke_width" format="integer" />
     </declare-styleable>
 
+
+    <declare-styleable name="FanMenuButtons">
+        <attr name="fanMenuLabels" format="reference" />
+        <attr name="fanLeftDrawable" format="reference" />
+        <attr name="fanButtonColors" format="reference" />
+        <attr name="fanAngleBetweenButtons" format="integer" />
+        <attr name="fanAnimationDuration" format="integer" />
+        <attr name="fanLeftDrawablePadding" format="dimension" />
+        <attr name="fanButtonHeight" format="dimension" />
+        <attr name="fanEnableTouchMovement" format="boolean" />
+        <attr name="fanRememberMovedPosition" format="boolean" />
+        <attr name="fanMinBounceBackAngle" format="integer" />
+        <attr name="fanMaxBounceBackAngle" format="integer" />
+    </declare-styleable>
+
 </resources>

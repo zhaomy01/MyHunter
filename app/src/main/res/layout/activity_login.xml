@@ -160,11 +160,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.example.dllo.myhunter.view.FogView
-        android:id="@+id/FogRed"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        fog:fog_image="@drawable/fog_dense"
-        fog:stroke_width="100" />
 </RelativeLayout>
