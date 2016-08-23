@@ -1,10 +1,13 @@
 package com.example.dllo.myhunter.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.dllo.myhunter.R;
 
@@ -16,8 +19,12 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * 推荐页面二级跳转的webView页面
  */
 public class RecommendWebViewActivity extends AbsBaseActivity implements View.OnClickListener {
+    private String PATH = "path";
     private WebView webView;
     private ImageView collection, share, back;
+    private ProgressBar progressBar;
+    private ProgressDialog dialog;
+
 
     @Override
     protected int setLayout() {
@@ -30,13 +37,31 @@ public class RecommendWebViewActivity extends AbsBaseActivity implements View.On
         collection = byView(R.id.webView_collection);
         share = byView(R.id.webview_share);
         back = byView(R.id.webview_back);
+        progressBar = byView(R.id.loading);
+
 
     }
 
     @Override
     protected void initDatas() {
+        WebChromeClient client = new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(newProgress);
+                }
+            }
+        };
+        webView.setWebChromeClient(client);
+
+
         Intent intent = getIntent();
-        String path = intent.getStringExtra("path");
+        String path = intent.getStringExtra(PATH);
         //设置WebView属性,能够执行JavaScript脚本
         //设置web视图
         webView.getSettings().setJavaScriptEnabled(true);
@@ -76,6 +101,7 @@ public class RecommendWebViewActivity extends AbsBaseActivity implements View.On
             return true;//表示当前WebView可以处理打开的新网页的请求,不用借助系统浏览器
         }
     }
+
     private void showShare() {
         ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();

@@ -62,7 +62,7 @@
             android:button="@null"
             android:drawableTop="@drawable/replace_recommend"
             android:gravity="center"
-            android:text="推荐"
+            android:text="@string/recommended"
             android:textColor="@drawable/selector_recommend"
             android:textSize="12sp" />
 
@@ -74,7 +74,7 @@
             android:button="@null"
             android:drawableTop="@drawable/replace_found"
             android:gravity="center"
-            android:text="发现"
+            android:text="@string/find"
             android:textColor="@drawable/selector_recommend"
             android:textSize="12sp" />
 
@@ -102,7 +102,7 @@
             android:button="@null"
             android:drawableTop="@drawable/replace_message"
             android:gravity="center"
-            android:text="消息"
+            android:text="@string/news"
             android:textColor="@drawable/selector_recommend"
             android:textSize="12sp" />
 
@@ -114,7 +114,7 @@
             android:button="@null"
             android:drawableTop="@drawable/replace_my"
             android:gravity="center"
-            android:text="我的"
+            android:text="@string/mine"
             android:textColor="@drawable/selector_recommend"
             android:textSize="12sp" />
     </RadioGroup>

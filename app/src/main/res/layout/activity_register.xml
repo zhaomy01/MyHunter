@@ -12,7 +12,8 @@
         android:layout_margin="30dp"
         android:src="@mipmap/btn_back" />
 
-    <RelativeLayout style="@style/register_relativeLayout"
+    <RelativeLayout
+        style="@style/register_relativeLayout"
         android:layout_width="wrap_content">
 
         <TextView
@@ -65,6 +66,7 @@
             android:background="@android:color/white" />
 
         <EditText
+            android:id="@+id/register_et_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -137,7 +139,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/register_btn_agreen"
+            android:id="@+id/register_btn_agree"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="80dp"

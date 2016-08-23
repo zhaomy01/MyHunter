@@ -24,7 +24,6 @@
     <string name="mycard">我的优先劵</string>
     <string name="myappraise">我的评价</string>
     <string name="hotsearch">热门搜索</string>
-
     <string name="menu_top_stories">Top Stories</string>
     <string name="menu_sports">Sports News</string>
     <string name="menu_tech">Technology News</string>
@@ -43,5 +42,62 @@
         <item>@string/menu_sports_1</item>
         <item>@string/menu_tech_1</item>
     </string-array>
-
+    <string name="search_name">搜索城市名称或拼音</string>
+    <string name="breadtrip">面包旅行页面</string>
+    <string name="find_password">找回密码</string>
+    <string name="user_email">用户名/邮箱</string>
+    <string name="userpassword">账号密码</string>
+    <string name="login">立即登录</string>
+    <string name="hello">你好 , 面粉 !</string>
+    <string name="usebread">使用面包账号登录</string>
+    <string name="phonenumlogin">通过手机号码登录</string>
+    <string name="emaillogin">面包用户名或邮箱登录</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="register">注册账号</string>
+    <string name="recommended">推荐</string>
+    <string name="find">发现</string>
+    <string name="news">消息</string>
+    <string name="mine">我的</string>
+    <string name="no_password">无密码快捷登录</string>
+    <string name="send_message">发私信</string>
+    <string name="hunter_grade">猎人评分</string>
+    <string name="good">好评率</string>
+    <string name="reseive">接单率</string>
+    <string name="reply">回复率</string>
+    <string name="evaluation">评价</string>
+    <string name="all">查看全部</string>
+    <string name="hunter_activi">猎人活动</string>
+    <string name="story">故事集</string>
+    <string name="certification">认证消息</string>
+    <string name="true_identity">真实身份</string>
+    <string name="professional">职业</string>
+    <string name="phonenum">电话号码</string>
+    <string name="details">活动详情</string>
+    <string name="GPSfail">GPS定位失败,请点击重试</string>
+    <string name="domestic_hot">国内热门城市</string>
+    <string name="allcity">全部城市</string>
+    <string name="over_hot">海外热门目的地</string>
+    <string name="all_region">全部地区</string>
+    <string name="search_class">搜索活动关键字,商圈,分类</string>
+    <string name="blockbuster">重磅推荐</string>
+    <string name="more">更多</string>
+    <string name="all_">全部</string>
+    <string name="city_travle">城市微旅行</string>
+    <string name="local">本地生活</string>
+    <string name="get">技能get</string>
+    <string name="ciname">摄影</string>
+    <string name="articla">文化体验</string>
+    <string name="activi">在线活动</string>
+    <string name="experience">抢鲜体验</string>
+    <string name="play">特色玩法</string>
+    <string name="star_hunter">明星猎人</string>
+    <string name="to_story">体验故事</string>
+    <string name="select">编辑精选</string>
+    <string name="to_like">人喜欢</string>
+    <string name="find_way">找回方式</string>
+    <string name="find_phone">手机号找回</string>
+    <string name="find_user">用户名/邮箱找回</string>
+    <string name="share_activi">分享活动</string>
+    <string name="title">主题</string>
+    <string name="confirm">确认</string>
 </resources>

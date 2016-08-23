@@ -1,6 +1,12 @@
 package com.example.dllo.myhunter.ui.activity;
 
 import android.support.design.widget.FloatingActionButton;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +16,20 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
 import com.example.dllo.myhunter.view.FanMenuButtons;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
@@ -27,8 +37,8 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     private FoundFragment foundFragment;
     private ImageButton main_ib_trip;
     private PopupWindow popupWindow;
-    private LinearLayout plus_lily_qx,main_linay_ys;
-    private ImageView plus_iv_city,plus_iv_travel;
+    private LinearLayout plus_lily_qx, main_linay_ys;
+    private ImageView plus_iv_city, plus_iv_travel;
 
     @Override
     protected int setLayout() {
@@ -90,10 +100,10 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, foundFragment);
                 break;
             case R.id.main_rb_message:
-                goTo(this,LoginActivity.class);
+                goTo(this, LoginActivity.class);
                 break;
             case R.id.main_rb_my:
-                goTo(this,LoginActivity.class);
+                goTo(this, LoginActivity.class);
                 break;
 
         }
@@ -103,7 +113,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_ib_trip:
-                popupWindow.showAsDropDown(main_linay_ys,0,2);
+                popupWindow.showAsDropDown(main_linay_ys, 0, 2);
                 showScaleAnim();
                 showAnim();
                 break;
@@ -111,28 +121,26 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         }
     }
 
-
     /**
      * popupWindow
      */
-    public void initpopup(){
+    public void initpopup() {
         popupWindow = new PopupWindow(this);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
-        View view = getLayoutInflater().inflate(R.layout.itme_popup_wo,null);
+        View view = getLayoutInflater().inflate(R.layout.itme_popup_wo, null);
         plus_iv_city = (ImageView) view.findViewById(R.id.plus_iv_city);
         plus_iv_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                goTo(MainActivity.this,AsAHunterActivity.class);
+                goTo(MainActivity.this, AsAHunterActivity.class);
             }
         });
         plus_iv_travel = (ImageView) view.findViewById(R.id.plus_iv_travel);
         plus_iv_travel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTo(MainActivity.this,BreadTravelActivity.class);
+                goTo(MainActivity.this, BreadTravelActivity.class);
             }
         });
         plus_lily_qx = (LinearLayout) view.findViewById(R.id.plus_lily_qx);
@@ -157,7 +165,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     /**
      * 加号里面的两个Button的动画效果
      */
-    public void showScaleAnim(){
+    public void showScaleAnim() {
         AnimationSet animationSet = new AnimationSet(true);
         //缩放
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1f, 0.0f, 1f,
@@ -173,18 +181,19 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         animationSet.addAnimation(translateAnimation);
         //旋转
         RotateAnimation rotateAnimation = new RotateAnimation(0, 360,
-                Animation.RELATIVE_TO_SELF,0.5f,
-                Animation.RELATIVE_TO_SELF,0.5f);
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(500);
         animationSet.addAnimation(rotateAnimation);
         plus_iv_city.startAnimation(animationSet);
         plus_iv_travel.startAnimation(animationSet);
     }
+
     //加号的旋转
-    public void showAnim(){
+    public void showAnim() {
         RotateAnimation rotateAnimation = new RotateAnimation(0, 180,
-                Animation.RELATIVE_TO_SELF,0.5f,
-                Animation.RELATIVE_TO_SELF,0.5f);
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(500);
         main_ib_trip.startAnimation(rotateAnimation);
     }

@@ -15,12 +15,12 @@
         android:background="#68BBCE">
 
         <ImageView
+            android:id="@+id/webview_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha"
-            android:id="@+id/webview_back"/>
+            android:src="@mipmap/abc_ic_ab_back_mtrl_am_alpha" />
 
         <TextView
             android:layout_width="0dp"
@@ -28,24 +28,32 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:textColor="#ffffff"
-            android:text="活动详情" />
+            android:text="活动详情"
+            android:textColor="#ffffff" />
+
         <ImageView
+            android:id="@+id/webView_collection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/webView_collection"
-            android:src="@mipmap/btn_spot_liked_normal"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@mipmap/btn_spot_liked_normal" />
+
         <ImageView
+            android:id="@+id/webview_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/webview_share"
-            android:src="@mipmap/btn_web_share_normal"
-            android:layout_gravity="center"
-            />
+            android:src="@mipmap/btn_web_share_normal" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/bread_anim" />
 
 
 </FrameLayout>

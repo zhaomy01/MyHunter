@@ -1,6 +1,7 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class RecommendedAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.itme_recommended_lbt, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.itme_recommend_iv);
-        Picasso.with(context).load(data.get(position % data.size())).into(imageView);
+        Picasso.with(context).load(data.get(position % data.size())).config(Bitmap.Config.RGB_565).into(imageView);
         container.addView(view);
         return view;
     }

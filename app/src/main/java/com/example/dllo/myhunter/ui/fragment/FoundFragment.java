@@ -3,6 +3,7 @@ package com.example.dllo.myhunter.ui.fragment;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -30,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * 发现页面
  */
 public class FoundFragment extends AbsBaseFragment {
-
+    private String PATH = "path";
     private RecyclerView recyclerView;
     private FoundAdapter foundAdapter;
     private List<FoundBean> data;
@@ -40,6 +41,7 @@ public class FoundFragment extends AbsBaseFragment {
     private AnimatorSet set;
     private View contentView;//获取根布局里的view
     private ImageView active;
+    private ImageView loadingIm;
 
     @Override
     protected int setLayout() {
@@ -53,13 +55,18 @@ public class FoundFragment extends AbsBaseFragment {
         time = byView(R.id.found_tv_date_added);
         userName = byView(R.id.found_tv_username);
         titleImage = byView(R.id.found_cim_avatar_s);
+
         active = byView(R.id.found_im_active);
+        loadingIm = byView(R.id.loading_im);
     }
 
     @Override
     protected void initDatas() {
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
+        AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
+        animationDrawable.start();
+
 
         data = new ArrayList<>();
         foundAdapter = new FoundAdapter(context);
@@ -76,7 +83,7 @@ public class FoundFragment extends AbsBaseFragment {
                         int url = response.getData().getFeeds().get(pos).getProduct_id();
                         final Intent intent = new Intent(context, RecommendWebViewActivity.class);
                         String foundWebUrl = NetUrl.FOUND_WEBVIEW_START + url + NetUrl.FOUND_WEBVIEW_END;
-                        intent.putExtra("path", foundWebUrl);
+                        intent.putExtra(PATH, foundWebUrl);
                         context.startActivity(intent);
                     }
                 });

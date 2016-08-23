@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="主题"
+            android:text="@string/title"
             android:textColor="@android:color/black"
             android:textSize="17sp" />
 
@@ -67,7 +67,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/shape_bton"
-            android:text="确认"
+            android:text="@string/confirm"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

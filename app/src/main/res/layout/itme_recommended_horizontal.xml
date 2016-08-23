@@ -26,8 +26,7 @@
             android:layout_marginRight="5dp"
             android:ellipsize="end"
             android:lines="2"
-            android:textColor="#403f42"
-            android:text="title" />
+            android:textColor="#403f42" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="7dp"
-                android:text="钱"
                 android:textColor="#eb5c3a"
                 android:textSize="15sp" />
         </LinearLayout>

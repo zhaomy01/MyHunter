@@ -39,12 +39,14 @@ public class RecommendedStoryAdapter extends RecyclerView.Adapter<RecommendedSto
     }
 
     @Override
-    public void onBindViewHolder(final MyHolder holder, final int position) {
-        holder.textView_name.setText(data.getData().getSpots().getSpot_list().get(position).getUser().getName());
-        holder.textView_content.setText(data.getData().getSpots().getSpot_list().get(position).getText());
-        holder.textView_add.setText(data.getData().getSpots().getSpot_list().get(position).getTarget().getTitle());
-        Picasso.with(context).load(data.getData().getSpots().getSpot_list().get(position).getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(holder.circleImageView);
-        Picasso.with(context).load(data.getData().getSpots().getSpot_list().get(position).getCover_image()).into(holder.imageView_middle);
+
+    public void onBindViewHolder(MyHolder holder, int position) {
+        RecommendedStarHunterBean.DataBean.SpotsBean.SpotListBean bean = data.getData().getSpots().getSpot_list().get(position);
+        holder.textView_name.setText(bean.getUser().getName());
+        holder.textView_content.setText(bean.getText());
+        holder.textView_add.setText(bean.getTarget().getTitle());
+        Picasso.with(context).load(bean.getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(holder.circleImageView);
+        Picasso.with(context).load(bean.getCover_image()).config(Bitmap.Config.RGB_565).into(holder.imageView_middle);
     }
 
     @Override

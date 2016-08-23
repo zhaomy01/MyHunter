@@ -1,15 +1,27 @@
 package com.example.dllo.myhunter.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.AllCityBean;
+import com.example.dllo.myhunter.ui.activity.MainActivity;
+import com.example.dllo.myhunter.ui.fragment.DomesticFragment;
+import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by dllo on 16/8/18.
@@ -57,7 +69,7 @@ public class DomesticAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (type == 0) {
             DomesticHotHolder domesticHotHolder = null;
             if (convertView == null) {
