@@ -66,7 +66,6 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
 
         if (bean.getProduct() == null) {
         } else {
-
             if (position == 0) {
                 Picasso.with(context).load(bean.getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
                 holder.found_tv_username.setText(bean.getUser().getUsername());
@@ -116,8 +115,6 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
                 }
 
             }
-
-
             Picasso.with(context).load(bean.getUser().getAvatar_s()).into(holder.found_cim_avatar_s);
             holder.found_tv_username.setText(bean.getUser().getUsername());
             holder.found_tv_date_added.setText(bean.getDate_added());

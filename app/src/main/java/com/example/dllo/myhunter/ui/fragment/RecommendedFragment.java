@@ -12,11 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.example.dllo.myhunter.model.bean.RecommendedStarHunterBean;
+import com.example.dllo.myhunter.model.net.NetUrl;
 import com.example.dllo.myhunter.tools.AnimationTextView;
 import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
@@ -24,13 +24,13 @@ import com.example.dllo.myhunter.tools.network.OnHttpCallback;
 import com.example.dllo.myhunter.ui.activity.AllCityActivity;
 import com.example.dllo.myhunter.ui.activity.DialogActivity;
 import com.example.dllo.myhunter.ui.activity.RecommendWebViewActivity;
+import com.example.dllo.myhunter.ui.activity.RecommendedJumpActivity;
 import com.example.dllo.myhunter.ui.adapter.RecommendedAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunteAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStoryAdapter;
 import com.example.dllo.myhunter.view.VerticalListView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +41,12 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
  * 推荐页面
  */
 public class RecommendedFragment extends AbsBaseFragment implements View.OnClickListener {
+    private String TURNTO = "turnTo";
+    private String NAME = "name";
+    private String COOKIE = "Cookie";
+    private String HOST = "Host";
+    private String USERAGENT = "User-Agent";
+    private String ID = "id";
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
     private VerticalListView recommended_vlv_editor;
@@ -59,6 +65,10 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private AnimatorSet set;
     private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
             recommended_hlv_features, recommmended_starHunter_hlv, recommended_story_hlv;
+    private String name;
+    private String url;
+    private String strUrl;
+
 
     @Override
     protected int setLayout() {
@@ -84,7 +94,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommmended_starHunter_hlv = byView(R.id.star_hunter_hlv);
         recommended_story_hlv = byView(R.id.story_hunter_hlv);
         recommended_vlv_editor = byView(R.id.editor_vlv);
-        recommended_tv_allcity = byView(R.id.itme_title_tv);
+        recommended_tv_allcity = byView(R.id.item_title_tv);
 
     }
 
@@ -92,7 +102,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     protected void initDatas() {
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
-
         itme_title_theme.setOnClickListener(this);
         recommended_tv_allcity.setOnClickListener(this);
         imgUrl = new ArrayList<>();
@@ -106,25 +115,33 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         storyAdapter = new RecommendedStoryAdapter(context);
         editorAdapter = new RecommendedEditorAdapter(context);
 
-
-        final String url = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82&lat=0.0&lng=0.0";
+        url = NetUrl.RECOMMENDED_URL;
         HashMap hashMap = new HashMap();
-        hashMap.put("Cookie", "bt_devid=a_7609e79906d5f8b7685635c2efcdc4118315069380bba5daf6fe972abceffb98; sessionid=c2fca75a76e4b91069be74bc76d5c622; refer_android_source=43");
-        hashMap.put("Host", "api.breadtrip.com");
-        hashMap.put("User-Agent", "BreadTrip/android/7.0.1/zh (android OS5.1) vbox86p Map/AutoNavi/v1.4.2 (Google Nexus 5 - 5.1.0 - API 22 - 1080x1920,generic) Paros/3.2.13");
+        hashMap.put(COOKIE, NetUrl.COOKIE_URL);
+        hashMap.put(HOST, NetUrl.HOST_URL);
+        hashMap.put(USERAGENT, NetUrl.USERAGENT_URL);
         /**
          * 推荐页面明星猎人的数据解析
          */
         DlaHttp.getInstance().startRequest(url, hashMap, RecommendedStarHunterBean.class, new OnHttpCallback<RecommendedStarHunterBean>() {
-
             @Override
-            public void onSuccess(RecommendedStarHunterBean response) {
+            public void onSuccess(final RecommendedStarHunterBean response) {
                 starHunterAdapter.setData(response);
                 storyAdapter.setData(response);
                 recommmended_starHunter_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 recommended_story_hlv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
                 recommmended_starHunter_hlv.setAdapter(starHunterAdapter);
                 recommended_story_hlv.setAdapter(storyAdapter);
+                starHunterAdapter.setRecycleListenerInterface(new OnRecycleListenerInterface() {
+                    @Override
+                    public void onRecycleListenerInterface(int pos) {
+                        String id = String.valueOf(response.getData().getHunters().getHunterLists().get(pos).getUser_id());
+                        Intent intent = new Intent(context, RecommendedJumpActivity.class);
+                        intent.putExtra(ID, id);
+                        getContext().startActivity(intent);
+
+                    }
+                });
             }
 
             @Override
@@ -225,8 +242,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
             }
         });
-
-
         viewPager.setCurrentItem(300);
         handle = new Handler();
         startRotate();
@@ -239,7 +254,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommend_tv_six.startAnimation(AnimationTextView.getAnimation().showTranslateSix());
 
         //毛玻璃效果图片
-        Glide.with(context).load("http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg").bitmapTransform(new BlurTransformation(context, 20)).into(recommend_iv_mbl);
+        Glide.with(context).load(NetUrl.IMAGE_URL).bitmapTransform(new BlurTransformation(context, 20)).into(recommend_iv_mbl);
 
 
     }
@@ -330,8 +345,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 set.play(oaY);
                 set.start();
                 break;
-            case R.id.itme_title_tv:
+            case R.id.item_title_tv:
                 goTo(context, AllCityActivity.class);
+                getFragmentManager().popBackStack();
                 break;
         }
     }
@@ -345,4 +361,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         set.play(oaY);
         set.start();
     }
+
+
 }

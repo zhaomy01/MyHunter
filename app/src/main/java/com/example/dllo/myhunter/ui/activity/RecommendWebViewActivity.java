@@ -19,6 +19,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * 推荐页面二级跳转的webView页面
  */
 public class RecommendWebViewActivity extends AbsBaseActivity implements View.OnClickListener {
+    private String PATH = "path";
     private WebView webView;
     private ImageView collection, share, back;
     private ProgressBar progressBar;
@@ -60,7 +61,7 @@ public class RecommendWebViewActivity extends AbsBaseActivity implements View.On
 
 
         Intent intent = getIntent();
-        String path = intent.getStringExtra("path");
+        String path = intent.getStringExtra(PATH);
         //设置WebView属性,能够执行JavaScript脚本
         //设置web视图
         webView.getSettings().setJavaScriptEnabled(true);

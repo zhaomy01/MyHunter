@@ -2,6 +2,7 @@ package com.example.dllo.myhunter.ui.fragment;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.AllCityBean;
+import com.example.dllo.myhunter.model.net.NetUrl;
 import com.example.dllo.myhunter.tools.network.DlaHttp;
 import com.example.dllo.myhunter.tools.network.OnHttpCallback;
 import com.example.dllo.myhunter.ui.adapter.DomesticAdapter;
@@ -17,7 +18,7 @@ public class OverSeaFragment extends AbsBaseFragment {
     private MyGridView overseaGridView;
     private MyExpandableListView expandableListView;
     private ExpandableListViewAdapter expandableListViewAdapter;
-    private String url = "http://api.breadtrip.com/hunter/products/v2/metadata/?with_citydata&with_sortdata&city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82 ";
+    private String url = NetUrl.OVERSEA_URL;
 
     @Override
     protected int setLayout() {
