@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
@@ -31,6 +32,7 @@ import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunteAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStoryAdapter;
 import com.example.dllo.myhunter.view.VerticalListView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

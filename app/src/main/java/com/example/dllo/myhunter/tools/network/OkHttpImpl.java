@@ -91,7 +91,6 @@ public class OkHttpImpl implements DlaNetwork {
             public void onResponse(Call call, Response response) throws IOException {
                 final String resultStr = response.body().string();//在子线程中  应该final
                 final T resutEntity = mGson.fromJson(resultStr, clazz);// 解析
-                Log.d("meiqingqiu", resultStr);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -152,9 +151,7 @@ public class OkHttpImpl implements DlaNetwork {
             @Override//在子线程里    需要回调主线程
             public void onResponse(Call call, Response response) throws IOException {
                 final String resultStr = response.body().string();//在子线程中  应该final
-                Log.d("OkHttpImpl", resultStr);
                 final T resutEntity = mGson.fromJson(resultStr, clazz);// 解析
-                Log.d("qingqiutou", resultStr);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
