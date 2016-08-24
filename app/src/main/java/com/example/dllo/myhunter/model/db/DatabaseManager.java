@@ -40,8 +40,8 @@ public class DatabaseManager {
     /**
      * 查询  某字段 等于 Value的值
      */
-    public <T> List<T> getQueryByWhereLength(Class<T> clas, String field, String[] value, int start, int length) {
-        return liteOrm.<T>query(new QueryBuilder(clas).where(field + "=?", value).limit(start, length));
+    public <T> List<T> getQueryByWhereLength(Class<T> clas, String field, String[] values, int start, int length) {
+        return liteOrm.<T>query(new QueryBuilder(clas).where(field + "=?", values).limit(start, length));
     }
 
     /**
