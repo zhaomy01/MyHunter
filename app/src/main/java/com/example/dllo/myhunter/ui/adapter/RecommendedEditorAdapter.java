@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
+import com.example.dllo.myhunter.model.bean.CollectionBean;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
+import com.example.dllo.myhunter.model.db.DatabaseManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,7 +64,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         } else {
             editorHolder = (EditorHolder) convertView.getTag();
         }
-        RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
+        final RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
         editorHolder.textView_content.setText(bean.getTitle());
         editorHolder.textView_address.setText(bean.getAddress());
         editorHolder.textView_like_counts.setText(String.valueOf(bean.getLike_count()));
@@ -71,13 +73,31 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         Picasso.with(context).load(bean.getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(editorHolder.circleImageView_icon);
         editorHolder.button_one.setText(bean.getTab_list().get(0));
         editorHolder.button_two.setText(bean.getTab_list().get(1));
+        final EditorHolder finalEditorHolder1 = editorHolder;
+        //收藏按钮点击收藏
+        editorHolder.imageView_collection.setOnClickListener(new View.OnClickListener() {
+            private boolean flag = true;
+
+            CollectionBean collectionBean = new CollectionBean(bean.getTitle_page(),bean.getTitle(),bean.getPrice(),"其他");
+            @Override
+            public void onClick(View v) {
+                if (flag) {
+                    finalEditorHolder1.imageView_collection.setImageResource(R.mipmap.ic_like_seleted);
+                    DatabaseManager.getOurInstance().insert(collectionBean);
+                    flag = false;
+                } else {
+                    finalEditorHolder1.imageView_collection.setImageResource(R.mipmap.ic_like_normal);
+                    flag = true;
+                }
+            }
+        });
 
         return convertView;
     }
 
     class EditorHolder {
         private TextView textView_content, textView_address, textView_like_counts, textView_price;
-        private ImageView imageView_top;
+        private ImageView imageView_top, imageView_collection;
         private CircleImageView circleImageView_icon;
         private Button button_one, button_two;
 
@@ -90,6 +110,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
             circleImageView_icon = (CircleImageView) view.findViewById(R.id.editor_iconIv);
             button_one = (Button) view.findViewById(R.id.editor_buttonOne);
             button_two = (Button) view.findViewById(R.id.editor_buttonTwo);
+            imageView_collection = (ImageView) view.findViewById(R.id.recommended_collection);
         }
     }
 }

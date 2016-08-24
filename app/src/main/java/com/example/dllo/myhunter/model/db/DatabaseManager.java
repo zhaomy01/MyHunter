@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class DatabaseManager {
 
-    private static LiteOrm liteOrm;
+    private LiteOrm liteOrm;
     private static DatabaseManager ourInstance = new DatabaseManager();
 
     private DatabaseManager() {
@@ -27,12 +27,19 @@ public class DatabaseManager {
     /**
      * 插入一条记录
      */
-    public <T> long insert(T t) {
-        return liteOrm.save(t);
+    public <T> void insert(T t) {
+        liteOrm.save(t);
     }
 
     /**
-     * 插入所有记录
+     * 插入所有数据
+     */
+    public <T> void insertAll(List<T> list) {
+        liteOrm.save(list);
+    }
+
+    /**
+     * 查询所有记录
      */
     public <T> List<T> getQueryAll(Class<T> clas) {
         return liteOrm.query(clas);
@@ -55,14 +62,14 @@ public class DatabaseManager {
     /**
      * 删除一个表
      */
-    public <T> void delete(Class<T> clas){
+    public <T> void delete(Class<T> clas) {
         liteOrm.delete(clas);
     }
 
     /**
      * 删除集合中的数据
      */
-    public <T> void deleteList(List<T> list){
+    public <T> void deleteList(List<T> list) {
         liteOrm.delete(list);
     }
 
