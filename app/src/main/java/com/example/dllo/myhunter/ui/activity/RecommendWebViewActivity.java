@@ -15,7 +15,6 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
- * Created by dllo on 16/8/13.
  * 推荐页面二级跳转的webView页面
  */
 public class RecommendWebViewActivity extends AbsBaseActivity implements View.OnClickListener {
@@ -38,8 +37,6 @@ public class RecommendWebViewActivity extends AbsBaseActivity implements View.On
         share = byView(R.id.webview_share);
         back = byView(R.id.webview_back);
         progressBar = byView(R.id.loading);
-
-
     }
 
     @Override
@@ -82,10 +79,12 @@ public class RecommendWebViewActivity extends AbsBaseActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.webView_collection:
+
+
+
                 break;
             case R.id.webview_share:
                 showShare();
-
                 break;
             case R.id.webview_back:
                 finish();
