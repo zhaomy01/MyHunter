@@ -10,7 +10,7 @@
         android:background="#68BBCE">
 
         <ImageView
-            android:id="@+id/found_active_back"
+            android:id="@+id/found_account_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -55,6 +55,7 @@
                 android:text="用户名" />
 
             <TextView
+                android:id="@+id/account_tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="aaaaaa" />

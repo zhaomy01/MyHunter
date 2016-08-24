@@ -33,6 +33,8 @@
         <activity android:name=".ui.activity.BreadTravelActivity"/>
         <activity android:name=".ui.activity.AsAHunterActivity"/>
         <activity android:name=".ui.activity.RecommendWebViewActivity"/>
+        <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.AccountSettingActivity"/>
         <activity android:name=".ui.activity.DialogActivity"
             android:theme="@style/dialog"/>
         <activity android:name=".ui.activity.CommentWebViewActivity"/>

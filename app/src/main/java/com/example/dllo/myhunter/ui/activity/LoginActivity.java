@@ -1,17 +1,13 @@
 package com.example.dllo.myhunter.ui.activity;
 
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by zlw on 16/8/12.
@@ -34,7 +30,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         btn_toNumberLogin = byView(R.id.login_btn_toNumberLogin);
         btn_toEmailLogin = byView(R.id.login_btn_toEmailLogin);
         login_tv_forget = byView(R.id.login_tv_forget);
-
     }
 
     @Override
@@ -53,15 +48,18 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.login_tv_zc:
                 goTo(this, RegisterActivity.class);
+                finish();
                 break;
             case R.id.login_iv_fh:
                 finish();
                 break;
             case R.id.login_btn_toNumberLogin:
                 goTo(this, NumberLoginActivity.class);
+                finish();
                 break;
             case R.id.login_btn_toEmailLogin:
                 goTo(this, EmailLoginActivity.class);
+                finish();
                 break;
             case R.id.login_tv_forget:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -77,9 +75,4 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         }
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-    }
 }
