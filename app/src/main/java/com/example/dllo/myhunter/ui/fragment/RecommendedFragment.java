@@ -41,7 +41,6 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
  * 推荐页面
  */
 public class RecommendedFragment extends AbsBaseFragment implements View.OnClickListener {
-    private String TURNTO = "turnTo";
     private String NAME = "name";
     private String COOKIE = "Cookie";
     private String HOST = "Host";
