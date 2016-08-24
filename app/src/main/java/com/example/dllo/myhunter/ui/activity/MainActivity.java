@@ -22,11 +22,13 @@ import com.example.dllo.myhunter.ui.fragment.FoundFragment;
 import com.example.dllo.myhunter.ui.fragment.MyFragment;
 import com.example.dllo.myhunter.ui.fragment.NewsFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
+import com.example.dllo.myhunter.ui.fragment.RecommendedOverSeaFragment;
 import com.example.dllo.myhunter.view.FanMenuButtons;
 
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
     private RecommendedFragment recommendedFragment;
+    private RecommendedOverSeaFragment recommendedOverSeaFragment;
     private FoundFragment foundFragment;
     private MyFragment myFragment;
     private NewsFragment newsFragment;
@@ -50,6 +52,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     @Override
     protected void initDatas() {
         recommendedFragment = new RecommendedFragment();
+        recommendedOverSeaFragment = new RecommendedOverSeaFragment();
         foundFragment = new FoundFragment();
         myFragment = new MyFragment();
         newsFragment = new NewsFragment();
@@ -92,6 +95,14 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                     recommendedFragment = new RecommendedFragment();
                 }
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
+                SharedPreferences sp =  getSharedPreferences("city",MODE_PRIVATE);
+                String str = sp.getString("str","全部城市");
+                if (str.equals("全部城市")){
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
+                }else {
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment,recommendedOverSeaFragment);
+                }
+
                 break;
             case R.id.main_rb_found:
                 if (foundFragment == null) {
@@ -112,9 +123,9 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
                 }
                 break;
             case R.id.main_rb_my:
-                SharedPreferences sp = getSharedPreferences("MyHunter", MODE_PRIVATE);
-                String str = sp.getString("key", "");
-                if (!str.isEmpty()) {
+                SharedPreferences spLogin = getSharedPreferences("MyHunter", MODE_PRIVATE);
+                String strLogin = spLogin.getString("key", "");
+                if (!strLogin.isEmpty()) {
                     if (myFragment == null) {
                         myFragment = new MyFragment();
                     }

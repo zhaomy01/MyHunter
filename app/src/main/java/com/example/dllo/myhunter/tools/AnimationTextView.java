@@ -1,7 +1,5 @@
 package com.example.dllo.myhunter.tools;
 
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
@@ -9,8 +7,6 @@ import android.view.animation.TranslateAnimation;
  * 文字动画类
  */
 public class AnimationTextView {
-
-    private AlphaAnimation alphaAnimation;
 
     private static final class showAnima {
         private static final AnimationTextView ANIMATION_TEXT_VIEW = new AnimationTextView();
@@ -52,16 +48,5 @@ public class AnimationTextView {
     public TranslateAnimation showTranslateSix() {
         return getTranslateAnimation(35, 4000);
     }
-
-    //虚化
-    public AlphaAnimation showAnimation() {
-        alphaAnimation = new AlphaAnimation(1.0f, 0.2f);
-        alphaAnimation.setDuration(4000);
-        alphaAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        alphaAnimation.setRepeatMode(Animation.REVERSE);
-        alphaAnimation.setRepeatCount(-1);
-        return alphaAnimation;
-    }
-
 
 }
