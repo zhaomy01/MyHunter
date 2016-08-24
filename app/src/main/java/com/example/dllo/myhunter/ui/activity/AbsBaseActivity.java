@@ -27,7 +27,6 @@ public abstract class AbsBaseActivity extends AppCompatActivity{
         setContentView(setLayout());
 
         initViews();
-
         initDatas();
 
     }

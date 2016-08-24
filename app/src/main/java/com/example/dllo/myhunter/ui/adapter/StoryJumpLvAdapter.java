@@ -13,7 +13,6 @@ import com.example.dllo.myhunter.model.bean.RecommendedStarHunterJumpBean;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by dllo on 16/8/22.
  * 推荐页面明星猎人跳转页面里的故事集的适配器
  */
 public class StoryJumpLvAdapter extends BaseAdapter {
