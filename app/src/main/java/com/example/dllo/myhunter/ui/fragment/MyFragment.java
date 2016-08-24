@@ -56,7 +56,6 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
                 break;
             case R.id.my_iv_photo:
                 goTo(context, AccountSettingActivity.class);
-                getActivity().finish();
                 break;
         }
     }

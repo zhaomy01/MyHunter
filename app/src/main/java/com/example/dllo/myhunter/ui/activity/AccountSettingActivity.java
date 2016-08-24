@@ -7,18 +7,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +25,6 @@ import android.widget.TextView;
 import com.example.dllo.myhunter.R;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -54,6 +43,8 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
     private Button btn_picture, btn_photo, btn_cancle;
     @SuppressLint("SdCardPath")
     private static String path = "/sdcard/myHead/";// sd路径
+    private SharedPreferences.Editor editor;
+    private ImageView loadingIm;
 
     @Override
     protected int setLayout() {
@@ -67,61 +58,24 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         back = byView(R.id.found_account_back);
         userName = byView(R.id.account_tv_username);
         titlePhoto = byView(R.id.account_cim_titlephoto);
+        loadingIm = byView(R.id.recommend_loading_im);
     }
 
     @Override
     protected void initDatas() {
+        AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
+        animationDrawable.start();
+        SharedPreferences spPicture = getSharedPreferences("Picture", MODE_PRIVATE);
+        editor = spPicture.edit();
+        titlePhoto.setImageBitmap(BitmapFactory.decodeFile(spPicture.getString("tu", "")));
         sex.setOnClickListener(this);
         birthday.setOnClickListener(this);
         back.setOnClickListener(this);
         titlePhoto.setOnClickListener(this);
+        // 获取名字
         SharedPreferences sp = getSharedPreferences("MyHunter", MODE_PRIVATE);
         String name = sp.getString("key", "");
         userName.setText(name);
-        // 调取想相册
-        Bitmap bt = BitmapFactory.decodeFile(path + "head.jpg");// 从Sd中找头像，转换成Bitmap
-        if (bt != null) {
-            @SuppressWarnings("deprecation")
-            Drawable drawable = new BitmapDrawable(toRoundBitmap(bt));// 转换成drawable
-            titlePhoto.setImageDrawable(drawable);
-
-        }
-//        SharedPreferences spPicture = getSharedPreferences("Picture", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = spPicture.edit();
-//
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-    }
-
-    /**
-     * 把bitmap转成圆形
-     */
-    private Bitmap toRoundBitmap(Bitmap bitmap) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        int r = 0;
-        // 取最短边做边长
-        if (width < height) {
-            r = width;
-        } else {
-            r = height;
-        }
-        // 构建一个bitmap
-        Bitmap backgroundBm = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        // new一个Canvas，在backgroundBmp上画图
-        Canvas canvas = new Canvas(backgroundBm);
-        Paint p = new Paint();
-        // 设置边缘光滑，去掉锯齿
-        p.setAntiAlias(true);
-        RectF rect = new RectF(0, 0, r, r);
-        // 通过制定的rect画一个圆角矩形，当圆角X轴方向的半径等于Y轴方向的半径时，
-        // 且都等于r/2时，画出来的圆角矩形就是圆形
-        canvas.drawRoundRect(rect, r / 2, r / 2, p);
-        // 设置当两个图形相交时的模式，SRC_IN为取SRC图形相交的部分，多余的将被去掉
-        p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        // canvas将bitmap画在backgroundBmp上
-        canvas.drawBitmap(bitmap, null, rect, p);
-        return backgroundBm;
     }
 
 
@@ -129,7 +83,6 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.account_sex:
-
                 initPop();
                 if (popupWindow.isShowing()) {
                     popupWindow.dismiss();
@@ -140,6 +93,7 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
             case R.id.account_birthday:
                 break;
             case R.id.found_account_back:
+                goTo(this, MainActivity.class);
                 finish();
                 break;
             case R.id.account_cim_titlephoto:
@@ -161,7 +115,7 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         // 点击收回
         popupWindow.setOutsideTouchable(true);
     }
-
+// 选取图片,弹出dialog
     private void showDialog() {
         View view = getLayoutInflater().inflate(R.layout.photo_choose_dialog, null);
         final Dialog dialog = new Dialog(this, R.style.transparentFrameWindowStyle);
@@ -186,6 +140,7 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         btn_photo = (Button) window.findViewById(R.id.btn_photo);
         btn_cancle = (Button) window.findViewById(R.id.btn_cancle);
 
+        // 相册
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,6 +150,7 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
                 dialog.dismiss();
             }
         });
+        // 相机
         btn_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,6 +175,15 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
                 if (resultCode == RESULT_OK) {
                     cropPhoto(data.getData());// 裁剪图片
                 }
+                Uri selectdeImage = data.getData();
+                Cursor cursor = getContentResolver().query(selectdeImage, null, null, null, null);
+                while (cursor.moveToNext()) {
+                    String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                    titlePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
+                    editor.putString("tu", path);
+                    editor.commit();
+                }
+                cursor.close();
                 break;
             case 2:
                 if (resultCode == RESULT_OK) {
@@ -226,41 +191,8 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
                     cropPhoto(Uri.fromFile(temp));// 裁剪图片
                 }
                 break;
-            case 3:
-                    if (data != null) {
-                        Bundle extras = data.getExtras();
-                        head = extras.getParcelable("data");
-                        if (head != null) {
-                            /**
-                             * 上传服务器代码
-                             */
-                            setPicToView(head);// 保存在SD卡中
-                            titlePhoto.setImageBitmap(toRoundBitmap(head));// 用ImageView显示出来
-                        }
-                        if (resultCode ==1) {
-                        SharedPreferences spPicture = getSharedPreferences("Picture", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = spPicture.edit();
-                        Uri selectdeImage = data.getData();
-                        Cursor cursor = getContentResolver().query(selectdeImage, null, null, null, null);
-                        while (cursor.moveToNext()) {
-                            String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                            titlePhoto.setImageBitmap(BitmapFactory.decodeFile(path));
-                            editor.putString("tu", path);
-                            Log.d("xxxx", "aaa");
-                            editor.commit();
-                        }
-                        cursor.close();
-                    }
-                }
-                break;
-            default:
-                break;
-
         }
-
     }
-
-    ;
 
     /**
      * 调用系统的裁剪
@@ -281,30 +213,4 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         startActivityForResult(intent, 3);
     }
 
-    private void setPicToView(Bitmap mBitmap) {
-        String sdStatus = Environment.getExternalStorageState();
-        if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
-            return;
-        }
-        FileOutputStream b = null;
-        File file = new File(path);
-        file.mkdirs();// 创建文件夹
-        String fileName = path + "head.jpg";// 图片名字
-        try {
-            b = new FileOutputStream(fileName);
-            mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                // 关闭流
-                b.flush();
-                b.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
 }

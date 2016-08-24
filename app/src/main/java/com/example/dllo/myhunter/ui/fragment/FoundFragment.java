@@ -64,6 +64,8 @@ public class FoundFragment extends AbsBaseFragment {
     protected void initDatas() {
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
+
+        // 加载之前的动画
         AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
         animationDrawable.start();
 
