@@ -1,5 +1,6 @@
 package com.example.dllo.myhunter.ui.activity;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
+import com.example.dllo.myhunter.ui.fragment.RecommendedOverSeaFragment;
 import com.example.dllo.myhunter.view.FanMenuButtons;
 
 import java.util.zip.Inflater;
@@ -34,6 +36,7 @@ import java.util.zip.Inflater;
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
     private RecommendedFragment recommendedFragment;
+    private RecommendedOverSeaFragment recommendedOverSeaFragment;
     private FoundFragment foundFragment;
     private ImageButton main_ib_trip;
     private PopupWindow popupWindow;
@@ -55,6 +58,7 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     @Override
     protected void initDatas() {
         recommendedFragment = new RecommendedFragment();
+        recommendedOverSeaFragment = new RecommendedOverSeaFragment();
         foundFragment = new FoundFragment();
         main_radiog.setOnCheckedChangeListener(this);
         main_ib_trip.setOnClickListener(this);
@@ -93,8 +97,13 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.main_rb_recommended:
-
-                fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
+                SharedPreferences sp = getSharedPreferences("city",MODE_PRIVATE);
+                String str = sp.getString("str","全部城市");
+                if (str.equals("全部城市")){
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
+                }else {
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment,recommendedOverSeaFragment);
+                }
                 break;
             case R.id.main_rb_found:
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, foundFragment);
