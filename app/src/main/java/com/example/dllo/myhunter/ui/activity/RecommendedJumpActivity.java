@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by dllo on 16/8/19.
  * 推荐页面中:明星猎人,体验故事点击背景图片的跳转页面
  */
 public class RecommendedJumpActivity extends AbsBaseActivity implements View.OnClickListener {

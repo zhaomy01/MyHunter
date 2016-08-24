@@ -17,9 +17,7 @@ import com.example.dllo.myhunter.view.MyGridView;
 
 import java.util.List;
 
-/**
- * Created by dllo on 16/8/18.
- */
+
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private Context context;
     private AllCityBean father;

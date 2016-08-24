@@ -1,7 +1,6 @@
 package com.example.dllo.myhunter.model.net;
 
 /**
- * Created by dllo on 16/8/15.
  * 网址常量类
  */
 public class NetUrl {
@@ -32,11 +31,6 @@ public class NetUrl {
      */
     public static final String OVERSEA_URL = "http://api.breadtrip.com/hunter/products/v2/metadata/?with_citydata&with_sortdata&city_name=%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82 ";
     /**
-     * 全部城市跳转到Fragment中接口(拼接)
-     */
-    public static final String CITY_HEAD_URL = "http://api.breadtrip.com/hunter/products/newstyle/?city_name=";
-    public static final String CITY_TAIL_URL = "&lat=0.0&lng=0.0";
-    /**
      * 推荐页面明星猎人请求头内容
      */
     public static final String COOKIE_URL = "bt_devid=a_7609e79906d5f8b7685635c2efcdc4118315069380bba5daf6fe972abceffb98; sessionid=c2fca75a76e4b91069be74bc76d5c622; refer_android_source=43";
@@ -45,7 +39,26 @@ public class NetUrl {
     /**
      * 毛玻璃效果图片网址
      */
-    public static final String IMAGE_URL= "http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg";
-
+    public static final String IMAGE_URL = "http://images.17173.com/2012/web/2012/07/16/q0716ar01s.jpg";
+    /**
+     * 重磅推荐WebView拼接接口
+     */
+    public static final String RECOMM_HEAD_WEB = "http://web.breadtrip.com/hunter/product/";
+    public static final String RECOMM_TAIL_WEB = "/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E9%87%8D%E7%A3%85%E6%8E%A8%E8%8D%90_A_1";
+    /**
+     * 在线WebView拼接接口
+     */
+    public static final String ONLINE_HEAD_WEB = "http://web.breadtrip.com/hunter/product/";
+    public static final String ONLINE_TAIL_WEB = "/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E5%9C%A8%E7%BA%BF%E6%B4%BB%E5%8A%A8_B_1";
+    /**
+     * 抢先体验WebView拼接接口
+     */
+    public static final String EXPERI_HEAD_WEB = "http://web.breadtrip.com/hunter/product/";
+    public static final String EXPERI_TAIL_WEB = "/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E6%8A%A2%E9%B2%9C%E4%BD%93%E9%AA%8C_C_1";
+    /**
+     * 特色玩法WebView拼接接口
+     */
+    public static final String FEATURES_HEAD_WEB = "http://web.breadtrip.com/hunter/product/";
+    public static final String FEATURES_TAIL_WEB = "/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E7%89%B9%E8%89%B2%E7%8E%A9%E6%B3%95_D_1";
 
 }

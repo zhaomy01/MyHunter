@@ -3,7 +3,6 @@ package com.example.dllo.myhunter.model.db;
 import com.example.dllo.myhunter.app.MyApp;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
-
 import java.util.List;
 
 /**

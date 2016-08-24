@@ -26,7 +26,6 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         style="@style/register_relativeLayout"
         android:layout_width="wrap_content">

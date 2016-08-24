@@ -19,6 +19,8 @@ import android.widget.RadioGroup;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
+import com.example.dllo.myhunter.ui.fragment.MyFragment;
+import com.example.dllo.myhunter.ui.fragment.NewsFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedOverSeaFragment;
 import com.example.dllo.myhunter.view.FanMenuButtons;
@@ -28,6 +30,8 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     private RecommendedFragment recommendedFragment;
     private RecommendedOverSeaFragment recommendedOverSeaFragment;
     private FoundFragment foundFragment;
+    private MyFragment myFragment;
+    private NewsFragment newsFragment;
     private ImageButton main_ib_trip;
     private PopupWindow popupWindow;
     private LinearLayout plus_lily_qx, main_linay_ys;
@@ -50,22 +54,23 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         recommendedFragment = new RecommendedFragment();
         recommendedOverSeaFragment = new RecommendedOverSeaFragment();
         foundFragment = new FoundFragment();
+        myFragment = new MyFragment();
+        newsFragment = new NewsFragment();
         main_radiog.setOnCheckedChangeListener(this);
         main_ib_trip.setOnClickListener(this);
         main_radiog.check(R.id.main_rb_recommended);
         initpopup();
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.myFAB);
         final FanMenuButtons sub = (FanMenuButtons) findViewById(R.id.myFABSubmenu);
         if (sub != null) {
             sub.setOnFanButtonClickListener(new FanMenuButtons.OnFanClickListener() {
                 @Override
                 public void onFanButtonClicked(int index) {
-                    if (index == 7){
-                        goTo(MainActivity.this,AGlobeActivity.class);
+                    if (index == 7) {
+                        goTo(MainActivity.this, AGlobeActivity.class);
                     }
-                    if (index == 6){
-                        goTo(MainActivity.this,LoginActivity.class);
+                    if (index == 6) {
+                        goTo(MainActivity.this, LoginActivity.class);
                     }
                 }
             });
@@ -81,28 +86,53 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         }
 
     }
-
-
+    
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.main_rb_recommended:
-                SharedPreferences sp = getSharedPreferences("city",MODE_PRIVATE);
+                if (recommendedFragment == null) {
+                    recommendedFragment = new RecommendedFragment();
+                }
+                fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
+                SharedPreferences sp =  getSharedPreferences("city",MODE_PRIVATE);
                 String str = sp.getString("str","全部城市");
                 if (str.equals("全部城市")){
                     fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
                 }else {
                     fragmentManagerTran.fragmentJump(R.id.main_fly_fragment,recommendedOverSeaFragment);
                 }
+
                 break;
             case R.id.main_rb_found:
+                if (foundFragment == null) {
+                    foundFragment = new FoundFragment();
+                }
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, foundFragment);
                 break;
             case R.id.main_rb_message:
-                goTo(this, LoginActivity.class);
+                SharedPreferences spf = getSharedPreferences("MyHunter", MODE_PRIVATE);
+                String sb = spf.getString("key", "");
+                if (!sb.isEmpty()) {
+                    if (newsFragment == null) {
+                        newsFragment = new NewsFragment();
+                    }
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, newsFragment);
+                } else {
+                    goTo(this, LoginActivity.class);
+                }
                 break;
             case R.id.main_rb_my:
-                goTo(this, LoginActivity.class);
+                SharedPreferences spLogin = getSharedPreferences("MyHunter", MODE_PRIVATE);
+                String strLogin = spLogin.getString("key", "");
+                if (!strLogin.isEmpty()) {
+                    if (myFragment == null) {
+                        myFragment = new MyFragment();
+                    }
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, myFragment);
+                } else {
+                    goTo(this, LoginActivity.class);
+                }
                 break;
 
         }

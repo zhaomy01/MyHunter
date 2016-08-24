@@ -14,8 +14,6 @@ import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.example.dllo.myhunter.tools.OnRecycleListenerInterface;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 /**
  * 推荐页面的适配器
  */
@@ -53,7 +51,7 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
             RecommendedBean.DataBean.ProductModulesBean.Product bean0 = data.getData().getProduct_modules().get(0).getProduct_list().get(position);
             holder.tv_title.setText(bean0.getTitle());
             holder.tv_number.setText(bean0.getPrice());
-            Picasso.with(context).load(bean0.getTitle_page()).into(holder.iv);
+            Picasso.with(context).load(bean0.getTitle_page()).config(Bitmap.Config.RGB_565).into(holder.iv);
         }
         if (type == 1){
             RecommendedBean.DataBean.ProductModulesBean.Product bean1 = data.getData().getProduct_modules().get(1).getProduct_list().get(position);
@@ -65,13 +63,13 @@ public class RecommendedRcAdapter extends RecyclerView.Adapter<RecommendedRcAdap
             RecommendedBean.DataBean.ProductModulesBean.Product bean2 = data.getData().getProduct_modules().get(2).getProduct_list().get(position);
             holder.tv_title.setText(bean2.getTitle());
             holder.tv_number.setText(bean2.getPrice());
-            Picasso.with(context).load(bean2.getTitle_page()).into(holder.iv);
+            Picasso.with(context).load(bean2.getTitle_page()).config(Bitmap.Config.RGB_565).into(holder.iv);
         }
         if (type == 3){
             RecommendedBean.DataBean.ProductModulesBean.Product bean3 = data.getData().getProduct_modules().get(3).getProduct_list().get(position);
             holder.tv_title.setText(bean3.getTitle());
             holder.tv_number.setText(bean3.getPrice());
-            Picasso.with(context).load(bean3.getTitle_page()).into(holder.iv);
+            Picasso.with(context).load(bean3.getTitle_page()).config(Bitmap.Config.RGB_565).into(holder.iv);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

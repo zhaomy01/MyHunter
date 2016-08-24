@@ -11,7 +11,7 @@ import com.example.dllo.myhunter.view.MyExpandableListView;
 import com.example.dllo.myhunter.view.MyGridView;
 
 /**
- * Created by dllo on 16/8/18.
+ * 海外城市
  */
 public class OverSeaFragment extends AbsBaseFragment {
     private DomesticAdapter overseaGridViewAdapter;
