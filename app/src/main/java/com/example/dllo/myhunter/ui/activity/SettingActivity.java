@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.dllo.myhunter.R;
 
 /**
- * Created by zlw on 16/8/18.
  * 设置界面
  */
 public class SettingActivity extends AbsBaseActivity implements View.OnClickListener {

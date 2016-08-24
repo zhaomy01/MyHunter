@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,7 +32,6 @@ import com.example.dllo.myhunter.ui.adapter.RecommendedEditorAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedRcAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStarHunteAdapter;
 import com.example.dllo.myhunter.ui.adapter.RecommendedStoryAdapter;
-import com.example.dllo.myhunter.view.VerticalListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,14 +43,13 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
  * 推荐页面
  */
 public class RecommendedFragment extends AbsBaseFragment implements View.OnClickListener {
-    private String NAME = "name";
     private String COOKIE = "Cookie";
     private String HOST = "Host";
     private String USERAGENT = "User-Agent";
     private String ID = "id";
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
-    private VerticalListView recommended_vlv_editor;
+    private ListView recommended_vlv_editor;
     private RecommendedStarHunteAdapter starHunterAdapter;
     private RecommendedStoryAdapter storyAdapter;
     private RecommendedEditorAdapter editorAdapter;
@@ -66,9 +65,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private AnimatorSet set;
     private RecyclerView recommended_hlv_blockbuster, recommended_hlv_line, recommended_hlv_first,
             recommended_hlv_features, recommmended_starHunter_hlv, recommended_story_hlv;
-    private String name;
     private String url;
-    private String strUrl;
+    private View headerview;
 
 
     @Override
@@ -78,26 +76,34 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
     @Override
     protected void initViews() {
-        viewPager = byView(R.id.recommended_vp_lbt);
-        recommend_iv_mbl = byView(R.id.recommend_iv_mbl);
         itme_title_theme = byView(R.id.itme_title_theme);
-        pointContainer = byView(R.id.recommended_linea_yd);
-        recommend_tv_one = byView(R.id.recommend_tv_one);
-        recommend_tv_two = byView(R.id.recommend_tv_two);
-        recommend_tv_three = byView(R.id.recommend_tv_three);
-        recommend_tv_four = byView(R.id.recommend_tv_four);
-        recommend_tv_five = byView(R.id.recommend_tv_five);
-        recommend_tv_six = byView(R.id.recommend_tv_six);
-        recommended_hlv_blockbuster = byView(R.id.recommended_hlv_blockbuster);
-        recommended_hlv_line = byView(R.id.recommended_hlv_line);
-        recommended_hlv_first = byView(R.id.recommended_hlv_first);
-        recommended_hlv_features = byView(R.id.recommended_hlv_features);
-        recommmended_starHunter_hlv = byView(R.id.star_hunter_hlv);
-        recommended_story_hlv = byView(R.id.story_hunter_hlv);
         recommended_vlv_editor = byView(R.id.editor_vlv);
         recommended_tv_allcity = byView(R.id.item_title_tv);
 
     }
+
+    private void getHeaderView(){
+        headerview = getActivity().getLayoutInflater().inflate(R.layout.itme_recommended_first_layout,null);
+        viewPager = (ViewPager) headerview.findViewById(R.id.recommended_vp_lbt);
+        pointContainer = (LinearLayout) headerview.findViewById(R.id.recommended_linea_yd);
+        recommended_hlv_blockbuster = (RecyclerView) headerview.findViewById(R.id.recommended_hlv_blockbuster);
+        recommend_iv_mbl = (ImageView) headerview.findViewById(R.id.recommend_iv_mbl);
+        recommend_tv_one = (TextView) headerview.findViewById(R.id.recommend_tv_one);
+        recommend_tv_two = (TextView) headerview.findViewById(R.id.recommend_tv_two);
+        recommend_tv_three = (TextView) headerview.findViewById(R.id.recommend_tv_three);
+        recommend_tv_four = (TextView) headerview.findViewById(R.id.recommend_tv_four);
+        recommend_tv_six = (TextView) headerview.findViewById(R.id.recommend_tv_six);
+        recommend_tv_five = (TextView) headerview.findViewById(R.id.recommend_tv_five);
+        recommended_hlv_line = (RecyclerView) headerview.findViewById(R.id.recommended_hlv_line);
+        recommended_hlv_first = (RecyclerView) headerview.findViewById(R.id.recommended_hlv_first);
+        recommended_hlv_features = (RecyclerView) headerview.findViewById(R.id.recommended_hlv_features);
+        recommmended_starHunter_hlv = (RecyclerView) headerview.findViewById(R.id.star_hunter_hlv);
+        recommended_story_hlv = (RecyclerView) headerview.findViewById(R.id.story_hunter_hlv);
+    }
+
+
+
+
 
     @Override
     public void onDestroy() {
@@ -107,6 +113,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
     @Override
     protected void initDatas() {
+        getHeaderView();
+        recommended_vlv_editor.addHeaderView(headerview);
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
         itme_title_theme.setOnClickListener(this);
@@ -263,7 +271,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
         //毛玻璃效果图片
         Glide.with(context).load(NetUrl.IMAGE_URL).bitmapTransform(new BlurTransformation(context, 20)).into(recommend_iv_mbl);
-
 
     }
 

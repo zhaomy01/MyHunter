@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.example.dllo.myhunter.R;
 
 /**
- * Created by dllo on 16/8/17.
+ * 快捷登录
  */
 public class NumberLoginActivity extends AbsBaseActivity implements View.OnClickListener {
     private ImageView iv_back;
