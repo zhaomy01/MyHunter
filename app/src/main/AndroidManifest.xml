@@ -47,7 +47,10 @@
             android:theme="@style/login_act_backStyle"/>
         <activity android:name=".ui.activity.RecommendedJumpActivity" />
 
-
+<!--系统相册-->
+        <uses-permission android:name="android.permission.CAMERA"/>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

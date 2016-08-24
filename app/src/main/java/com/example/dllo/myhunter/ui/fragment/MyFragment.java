@@ -2,6 +2,7 @@ package com.example.dllo.myhunter.ui.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,10 +38,13 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
 
         mySetting.setOnClickListener(this);
         titlePhoto.setOnClickListener(this);
+        // 从sp 中取得用户名字,在用户名字的地方显示
         SharedPreferences sp = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE);
          String name = sp.getString("key","");
         myUserName.setText(name);
-
+// 刷新头像
+        SharedPreferences spPicture = context.getSharedPreferences("Picture", Context.MODE_PRIVATE);
+        titlePhoto.setImageBitmap(BitmapFactory.decodeFile(spPicture.getString("tu","")));
     }
 
     @Override
@@ -48,9 +52,11 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.my_iv_setting:
                 goTo(context, SettingActivity.class);
+                getActivity().finish();
                 break;
             case R.id.my_iv_photo:
                 goTo(context, AccountSettingActivity.class);
+                getActivity().finish();
                 break;
         }
     }
