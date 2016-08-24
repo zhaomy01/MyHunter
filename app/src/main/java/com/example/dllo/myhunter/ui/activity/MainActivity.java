@@ -1,12 +1,7 @@
 package com.example.dllo.myhunter.ui.activity;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,25 +11,25 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.fragment.FoundFragment;
+import com.example.dllo.myhunter.ui.fragment.MyFragment;
+import com.example.dllo.myhunter.ui.fragment.NewsFragment;
 import com.example.dllo.myhunter.ui.fragment.RecommendedFragment;
 import com.example.dllo.myhunter.view.FanMenuButtons;
-
-import java.util.zip.Inflater;
 
 public class MainActivity extends AbsBaseActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
     private RadioGroup main_radiog;
     private RecommendedFragment recommendedFragment;
     private FoundFragment foundFragment;
+    private MyFragment myFragment;
+    private NewsFragment newsFragment;
     private ImageButton main_ib_trip;
     private PopupWindow popupWindow;
     private LinearLayout plus_lily_qx, main_linay_ys;
@@ -56,22 +51,23 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
     protected void initDatas() {
         recommendedFragment = new RecommendedFragment();
         foundFragment = new FoundFragment();
+        myFragment = new MyFragment();
+        newsFragment = new NewsFragment();
         main_radiog.setOnCheckedChangeListener(this);
         main_ib_trip.setOnClickListener(this);
         main_radiog.check(R.id.main_rb_recommended);
         initpopup();
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.myFAB);
         final FanMenuButtons sub = (FanMenuButtons) findViewById(R.id.myFABSubmenu);
         if (sub != null) {
             sub.setOnFanButtonClickListener(new FanMenuButtons.OnFanClickListener() {
                 @Override
                 public void onFanButtonClicked(int index) {
-                    if (index == 7){
-                        goTo(MainActivity.this,AGlobeActivity.class);
+                    if (index == 7) {
+                        goTo(MainActivity.this, AGlobeActivity.class);
                     }
-                    if (index == 6){
-                        goTo(MainActivity.this,LoginActivity.class);
+                    if (index == 6) {
+                        goTo(MainActivity.this, LoginActivity.class);
                     }
                 }
             });
@@ -87,23 +83,45 @@ public class MainActivity extends AbsBaseActivity implements RadioGroup.OnChecke
         }
 
     }
-
-
+    
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.main_rb_recommended:
-
+                if (recommendedFragment == null) {
+                    recommendedFragment = new RecommendedFragment();
+                }
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, recommendedFragment);
                 break;
             case R.id.main_rb_found:
+                if (foundFragment == null) {
+                    foundFragment = new FoundFragment();
+                }
                 fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, foundFragment);
                 break;
             case R.id.main_rb_message:
-                goTo(this, LoginActivity.class);
+                SharedPreferences spf = getSharedPreferences("MyHunter", MODE_PRIVATE);
+                String sb = spf.getString("key", "");
+                if (!sb.isEmpty()) {
+                    if (newsFragment == null) {
+                        newsFragment = new NewsFragment();
+                    }
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, newsFragment);
+                } else {
+                    goTo(this, LoginActivity.class);
+                }
                 break;
             case R.id.main_rb_my:
-                goTo(this, LoginActivity.class);
+                SharedPreferences sp = getSharedPreferences("MyHunter", MODE_PRIVATE);
+                String str = sp.getString("key", "");
+                if (!str.isEmpty()) {
+                    if (myFragment == null) {
+                        myFragment = new MyFragment();
+                    }
+                    fragmentManagerTran.fragmentJump(R.id.main_fly_fragment, myFragment);
+                } else {
+                    goTo(this, LoginActivity.class);
+                }
                 break;
 
         }
