@@ -47,6 +47,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private String HOST = "Host";
     private String USERAGENT = "User-Agent";
     private String ID = "id";
+    private String PATH = "path";
     private ViewPager viewPager;
     private RecommendedAdapter recommendedAdapter;
     private ListView recommended_vlv_editor;
@@ -68,7 +69,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private String url;
     private View headerview;
 
-
     @Override
     protected int setLayout() {
         return R.layout.fragment_recommended;
@@ -82,8 +82,8 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
 
     }
 
-    private void getHeaderView(){
-        headerview = getActivity().getLayoutInflater().inflate(R.layout.itme_recommended_first_layout,null);
+    private void getHeaderView() {
+        headerview = getActivity().getLayoutInflater().inflate(R.layout.itme_recommended_first_layout, null);
         viewPager = (ViewPager) headerview.findViewById(R.id.recommended_vp_lbt);
         pointContainer = (LinearLayout) headerview.findViewById(R.id.recommended_linea_yd);
         recommended_hlv_blockbuster = (RecyclerView) headerview.findViewById(R.id.recommended_hlv_blockbuster);
@@ -100,9 +100,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommmended_starHunter_hlv = (RecyclerView) headerview.findViewById(R.id.star_hunter_hlv);
         recommended_story_hlv = (RecyclerView) headerview.findViewById(R.id.story_hunter_hlv);
     }
-
-
-
 
 
     @Override
@@ -205,9 +202,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                     @Override
                     public void onRecycleListenerInterface(int pos) {
                         int blockbusterUrl = response.getData().getProduct_modules().get(0).getProduct_list().get(pos).getProduct_id();
-                        String urlB = "http://web.breadtrip.com/hunter/product/"+ blockbusterUrl+"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E9%87%8D%E7%A3%85%E6%8E%A8%E8%8D%90_A_1";
+                        String urlB = NetUrl.RECOMM_HEAD_WEB + blockbusterUrl + NetUrl.RECOMM_TAIL_WEB;
                         Intent intent = new Intent(context, RecommendWebViewActivity.class);
-                        intent.putExtra("path",urlB);
+                        intent.putExtra(PATH, urlB);
                         context.startActivity(intent);
                     }
                 });
@@ -218,9 +215,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                     @Override
                     public void onRecycleListenerInterface(int pos) {
                         int lineUrl = response.getData().getProduct_modules().get(1).getProduct_list().get(pos).getProduct_id();
-                        String urlLine = "http://web.breadtrip.com/hunter/product/"+lineUrl +"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E5%9C%A8%E7%BA%BF%E6%B4%BB%E5%8A%A8_B_1";
-                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
-                        intent.putExtra("path",urlLine);
+                        String urlLine = NetUrl.ONLINE_HEAD_WEB + lineUrl + NetUrl.ONLINE_TAIL_WEB;
+                        Intent intent = new Intent(context, RecommendWebViewActivity.class);
+                        intent.putExtra(PATH, urlLine);
                         context.startActivity(intent);
                     }
                 });
@@ -231,9 +228,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                     @Override
                     public void onRecycleListenerInterface(int pos) {
                         int fristUrl = response.getData().getProduct_modules().get(2).getProduct_list().get(pos).getProduct_id();
-                        String fristWebView = "http://web.breadtrip.com/hunter/product/" + fristUrl+"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E6%8A%A2%E9%B2%9C%E4%BD%93%E9%AA%8C_C_1";
-                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
-                        intent.putExtra("path",fristWebView);
+                        String fristWebView = NetUrl.EXPERI_HEAD_WEB + fristUrl + NetUrl.EXPERI_TAIL_WEB;
+                        Intent intent = new Intent(context, RecommendWebViewActivity.class);
+                        intent.putExtra(PATH, fristWebView);
                         context.startActivity(intent);
                     }
                 });
@@ -244,9 +241,9 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                     @Override
                     public void onRecycleListenerInterface(int pos) {
                         int featureUrl = response.getData().getProduct_modules().get(3).getProduct_list().get(pos).getProduct_id();
-                        String featureWebView = "http://web.breadtrip.com/hunter/product/" + featureUrl +"/?bts=apphome_%E5%85%A8%E9%83%A8%E5%9F%8E%E5%B8%82_%E7%89%B9%E8%89%B2%E7%8E%A9%E6%B3%95_D_1";
-                        Intent intent = new Intent(context,RecommendWebViewActivity.class);
-                        intent.putExtra("path",featureWebView);
+                        String featureWebView = NetUrl.FEATURES_HEAD_WEB + featureUrl + NetUrl.FEATURES_TAIL_WEB;
+                        Intent intent = new Intent(context, RecommendWebViewActivity.class);
+                        intent.putExtra(PATH, featureWebView);
                         context.startActivity(intent);
                     }
                 });
