@@ -35,14 +35,13 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
 
     @Override
     protected void initDatas() {
-
         mySetting.setOnClickListener(this);
         titlePhoto.setOnClickListener(this);
         // 从sp 中取得用户名字,在用户名字的地方显示
         SharedPreferences sp = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE);
          String name = sp.getString("key","");
         myUserName.setText(name);
-// 刷新头像
+        // 刷新头像
         SharedPreferences spPicture = context.getSharedPreferences("Picture", Context.MODE_PRIVATE);
         titlePhoto.setImageBitmap(BitmapFactory.decodeFile(spPicture.getString("tu","")));
     }

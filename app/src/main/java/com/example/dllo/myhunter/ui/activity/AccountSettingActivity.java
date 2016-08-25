@@ -1,13 +1,10 @@
 package com.example.dllo.myhunter.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -29,7 +26,6 @@ import java.io.File;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by zlw on 16/8/18.
  * 账户设置
  */
 public class AccountSettingActivity extends AbsBaseActivity implements View.OnClickListener {
@@ -39,12 +35,8 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
     private ImageView back;
     private TextView userName;
     private CircleImageView titlePhoto;// 头像
-    private Bitmap head;// 头像Bitmap
     private Button btn_picture, btn_photo, btn_cancle;
-    @SuppressLint("SdCardPath")
-    private static String path = "/sdcard/myHead/";// sd路径
     private SharedPreferences.Editor editor;
-    private ImageView loadingIm;
 
     @Override
     protected int setLayout() {
@@ -58,13 +50,10 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         back = byView(R.id.found_account_back);
         userName = byView(R.id.account_tv_username);
         titlePhoto = byView(R.id.account_cim_titlephoto);
-        loadingIm = byView(R.id.recommend_loading_im);
     }
 
     @Override
     protected void initDatas() {
-        AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
-        animationDrawable.start();
         SharedPreferences spPicture = getSharedPreferences("Picture", MODE_PRIVATE);
         editor = spPicture.edit();
         titlePhoto.setImageBitmap(BitmapFactory.decodeFile(spPicture.getString("tu", "")));
@@ -115,7 +104,7 @@ public class AccountSettingActivity extends AbsBaseActivity implements View.OnCl
         // 点击收回
         popupWindow.setOutsideTouchable(true);
     }
-// 选取图片,弹出dialog
+    // 选取图片,弹出dialog
     private void showDialog() {
         View view = getLayoutInflater().inflate(R.layout.photo_choose_dialog, null);
         final Dialog dialog = new Dialog(this, R.style.transparentFrameWindowStyle);
