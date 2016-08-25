@@ -3,6 +3,8 @@ package com.example.dllo.myhunter.model.db;
 import com.example.dllo.myhunter.app.MyApp;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
+import com.litesuits.orm.db.assit.WhereBuilder;
+
 import java.util.List;
 
 /**
@@ -10,7 +12,7 @@ import java.util.List;
  */
 public class DatabaseManager {
 
-    private static LiteOrm liteOrm;
+    private LiteOrm liteOrm;
     private static DatabaseManager ourInstance = new DatabaseManager();
 
     private DatabaseManager() {
@@ -26,12 +28,19 @@ public class DatabaseManager {
     /**
      * 插入一条记录
      */
-    public <T> long insert(T t) {
-        return liteOrm.save(t);
+    public <T> void insert(T t) {
+        liteOrm.save(t);
     }
 
     /**
-     * 插入所有记录
+     * 插入所有数据
+     */
+    public <T> void insertAll(List<T> list) {
+        liteOrm.save(list);
+    }
+
+    /**
+     * 查询所有记录
      */
     public <T> List<T> getQueryAll(Class<T> clas) {
         return liteOrm.query(clas);
@@ -40,8 +49,20 @@ public class DatabaseManager {
     /**
      * 查询  某字段 等于 Value的值
      */
-    public <T> List<T> getQueryByWhereLength(Class<T> clas, String field, String[] value, int start, int length) {
-        return liteOrm.<T>query(new QueryBuilder(clas).where(field + "=?", value).limit(start, length));
+    public <T> List<T> getQueryByWhereLength(Class<T> clas, String field, String[] values, int start, int length) {
+        return liteOrm.<T>query(new QueryBuilder(clas).where(field + "=?", values).limit(start, length));
+    }
+
+
+    /**
+     * 删除某条数据
+     * @param cla
+     * @param field
+     * @param value
+     * @param <T>
+     */
+    public <T> void delete(Class<T> cla,String field,String [] value){
+        liteOrm.delete(cla, WhereBuilder.create(cla).where(field + "=?", value));
     }
 
     /**
@@ -54,15 +75,21 @@ public class DatabaseManager {
     /**
      * 删除一个表
      */
-    public <T> void delete(Class<T> clas){
+    public <T> void delete(Class<T> clas) {
         liteOrm.delete(clas);
     }
 
     /**
      * 删除集合中的数据
      */
-    public <T> void deleteList(List<T> list){
+    public <T> void deleteList(List<T> list) {
         liteOrm.delete(list);
+    }
+    /**
+     * 删除数据库
+     */
+    public void deleteDatabase(){
+        liteOrm.deleteDatabase();
     }
 
 }

@@ -9,12 +9,13 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
@@ -70,6 +71,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private String url;
     private View headerview;
     private  ImageView loadingIm;
+
 
     @Override
     protected int setLayout() {
@@ -353,7 +355,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         switch (v.getId()) {
             case R.id.itme_title_theme:
                 goTo(context, DialogActivity.class);
-
                 //ofFloat()方法的第一个参数表示动画操作的对象（可以是任意对象），
                 // 第二个参数表示操作对象的属性名字（只要是对象有的属性都可以），
                 // 第三个参数之后就是动画过渡值。当然过度值可以有一个到N个，
@@ -364,6 +365,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
                 set.play(oaY);
                 set.start();
                 break;
+            //点击全部城市跳转
             case R.id.item_title_tv:
                 goTo(context, AllCityActivity.class);
                 getFragmentManager().popBackStack();

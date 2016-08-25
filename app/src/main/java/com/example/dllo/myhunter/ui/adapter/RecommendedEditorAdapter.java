@@ -1,7 +1,10 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
+import com.example.dllo.myhunter.model.bean.CollectionBean;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
+import com.example.dllo.myhunter.model.db.DatabaseManager;
+import com.example.dllo.myhunter.ui.activity.LoginActivity;
 import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
@@ -25,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecommendedEditorAdapter extends BaseAdapter {
     private RecommendedBean data;
     private Context context;
+    private boolean flag = true;
 
     public RecommendedEditorAdapter(Context context) {
         this.context = context;
@@ -52,7 +60,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         EditorHolder editorHolder = null;
         if (convertView == null) {
@@ -62,7 +70,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         } else {
             editorHolder = (EditorHolder) convertView.getTag();
         }
-        RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
+        final RecommendedBean.DataBean.OtherProductsBean.ProdBean bean = data.getData().getOther_products().getProduct_list().get(position);
         editorHolder.textView_content.setText(bean.getTitle());
         editorHolder.textView_address.setText(bean.getAddress());
         editorHolder.textView_like_counts.setText(String.valueOf(bean.getLike_count()));
@@ -71,13 +79,50 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         Picasso.with(context).load(bean.getUser().getAvatar_l()).config(Bitmap.Config.RGB_565).into(editorHolder.circleImageView_icon);
         editorHolder.button_one.setText(bean.getTab_list().get(0));
         editorHolder.button_two.setText(bean.getTab_list().get(1));
+        final EditorHolder finalEditorHolder1 = editorHolder;
+        //收藏按钮点击收藏
+        editorHolder.imageView_collection.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = context.getSharedPreferences("city", Context.MODE_PRIVATE);
+                String str = sp.getString("str", "全部城市");
+
+                SharedPreferences sp1 = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE);
+                String name = sp1.getString("key", "");
+                SharedPreferences.Editor editor = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE).edit();
+                if (!name.isEmpty()) {
+                    CollectionBean collectionBean = new CollectionBean();
+                    collectionBean.setUrl(bean.getTitle_page());
+                    collectionBean.setContent(bean.getTitle());
+                    collectionBean.setPrice(bean.getPrice());
+                    collectionBean.setAddress(str);
+                    if (flag) {
+                        DatabaseManager.getOurInstance().insert(collectionBean);
+                        editor.putInt("image", R.mipmap.ic_like_seleted);
+                        editor.commit();
+                        flag = false;
+                    } else {
+                        DatabaseManager.getOurInstance().delete(CollectionBean.class, "content", new String[]{collectionBean.getContent()});
+                        editor.putInt("image", R.mipmap.ic_like_normal);
+                        editor.commit();
+                        flag = true;
+                    }
+                    finalEditorHolder1.imageView_collection.setImageResource(sp1.getInt("image", 1));
+
+                } else {
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                }
+
+            }
+        });
 
         return convertView;
     }
 
     class EditorHolder {
         private TextView textView_content, textView_address, textView_like_counts, textView_price;
-        private ImageView imageView_top;
+        private ImageView imageView_top, imageView_collection;
         private CircleImageView circleImageView_icon;
         private Button button_one, button_two;
 
@@ -90,6 +135,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
             circleImageView_icon = (CircleImageView) view.findViewById(R.id.editor_iconIv);
             button_one = (Button) view.findViewById(R.id.editor_buttonOne);
             button_two = (Button) view.findViewById(R.id.editor_buttonTwo);
+            imageView_collection = (ImageView) view.findViewById(R.id.recommended_collection);
         }
     }
 }
