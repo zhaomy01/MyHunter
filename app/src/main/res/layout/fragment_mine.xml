@@ -47,7 +47,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/meinv"/>
 
                 <TextView
                     android:id="@+id/my_tv_username"
