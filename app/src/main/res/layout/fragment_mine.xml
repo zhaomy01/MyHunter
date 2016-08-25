@@ -129,6 +129,7 @@
     </FrameLayout>
 
     <RadioGroup
+        android:id="@+id/radiogroup"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@android:color/white"
@@ -153,6 +154,7 @@
             android:background="#E3E3E3" />
 
         <RadioButton
+            android:id="@+id/radiobtn_collection"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"

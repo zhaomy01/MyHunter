@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.ui.activity.AccountSettingActivity;
+import com.example.dllo.myhunter.ui.activity.CollectionActivity;
 import com.example.dllo.myhunter.ui.activity.SettingActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -15,10 +17,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by dllo on 16/8/23.
  */
-public class MyFragment extends  AbsBaseFragment implements View.OnClickListener {
+public class MyFragment extends  AbsBaseFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private TextView myUserName;
     private ImageView mySetting;
     private CircleImageView titlePhoto;
+    private RadioGroup radioGroup;
     @Override
     protected int setLayout() {
         return R.layout.fragment_mine;
@@ -29,6 +32,7 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
         myUserName = byView(R.id.my_tv_username);
         mySetting = byView(R.id.my_iv_setting);
         titlePhoto = byView(R.id.my_iv_photo);
+        radioGroup = byView(R.id.radiogroup);
 
     }
 
@@ -38,8 +42,9 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
         mySetting.setOnClickListener(this);
         titlePhoto.setOnClickListener(this);
         SharedPreferences sp = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE);
-         String name = sp.getString("key","");
+        String name = sp.getString("key","");
         myUserName.setText(name);
+        radioGroup.setOnCheckedChangeListener(this);
 
     }
 
@@ -51,6 +56,15 @@ public class MyFragment extends  AbsBaseFragment implements View.OnClickListener
                 break;
             case R.id.my_iv_photo:
                 goTo(context, AccountSettingActivity.class);
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
+            case R.id.radiobtn_collection:
+                goTo(context, CollectionActivity.class);
                 break;
         }
     }

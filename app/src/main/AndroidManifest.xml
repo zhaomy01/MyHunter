@@ -47,6 +47,7 @@
         <activity android:name=".ui.activity.AGlobeActivity"
             android:theme="@style/login_act_backStyle"/>
         <activity android:name=".ui.activity.RecommendedJumpActivity" />
+        <activity android:name=".ui.activity.CollectionActivity"/>
 
 
         <activity

@@ -18,7 +18,8 @@ public class CollectionBean {
         this.address = address;
     }
 
-
+    public CollectionBean() {
+    }
 
     public int get_id() {
         return _id;

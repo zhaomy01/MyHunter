@@ -1,7 +1,10 @@
 package com.example.dllo.myhunter.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,9 @@ import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.CollectionBean;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
 import com.example.dllo.myhunter.model.db.DatabaseManager;
+import com.example.dllo.myhunter.ui.activity.LoginActivity;
 import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
@@ -27,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecommendedEditorAdapter extends BaseAdapter {
     private RecommendedBean data;
     private Context context;
+    private boolean flag = true;
 
     public RecommendedEditorAdapter(Context context) {
         this.context = context;
@@ -54,7 +60,7 @@ public class RecommendedEditorAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         EditorHolder editorHolder = null;
         if (convertView == null) {
@@ -76,19 +82,38 @@ public class RecommendedEditorAdapter extends BaseAdapter {
         final EditorHolder finalEditorHolder1 = editorHolder;
         //收藏按钮点击收藏
         editorHolder.imageView_collection.setOnClickListener(new View.OnClickListener() {
-            private boolean flag = true;
 
-            CollectionBean collectionBean = new CollectionBean(bean.getTitle_page(),bean.getTitle(),bean.getPrice(),"其他");
             @Override
             public void onClick(View v) {
-                if (flag) {
-                    finalEditorHolder1.imageView_collection.setImageResource(R.mipmap.ic_like_seleted);
-                    DatabaseManager.getOurInstance().insert(collectionBean);
-                    flag = false;
+                SharedPreferences sp = context.getSharedPreferences("city", Context.MODE_PRIVATE);
+                String str = sp.getString("str", "全部城市");
+
+                SharedPreferences sp1 = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE);
+                String name = sp1.getString("key", "");
+                SharedPreferences.Editor editor = context.getSharedPreferences("MyHunter", Context.MODE_PRIVATE).edit();
+                if (!name.isEmpty()) {
+                    CollectionBean collectionBean = new CollectionBean();
+                    collectionBean.setUrl(bean.getTitle_page());
+                    collectionBean.setContent(bean.getTitle());
+                    collectionBean.setPrice(bean.getPrice());
+                    collectionBean.setAddress(str);
+                    if (flag) {
+                        DatabaseManager.getOurInstance().insert(collectionBean);
+                        editor.putInt("image", R.mipmap.ic_like_seleted);
+                        editor.commit();
+                        flag = false;
+                    } else {
+                        DatabaseManager.getOurInstance().delete(CollectionBean.class, "content", new String[]{collectionBean.getContent()});
+                        editor.putInt("image", R.mipmap.ic_like_normal);
+                        editor.commit();
+                        flag = true;
+                    }
+                    finalEditorHolder1.imageView_collection.setImageResource(sp1.getInt("image", 1));
+
                 } else {
-                    finalEditorHolder1.imageView_collection.setImageResource(R.mipmap.ic_like_normal);
-                    flag = true;
+                    context.startActivity(new Intent(context, LoginActivity.class));
                 }
+
             }
         });
 
