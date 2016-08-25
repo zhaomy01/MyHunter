@@ -4,6 +4,7 @@ package com.example.dllo.myhunter.ui.fragment;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,6 +70,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
             recommended_hlv_features, recommmended_starHunter_hlv, recommended_story_hlv;
     private String url;
     private View headerview;
+    private  ImageView loadingIm;
 
 
     @Override
@@ -81,7 +83,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         itme_title_theme = byView(R.id.itme_title_theme);
         recommended_vlv_editor = byView(R.id.editor_vlv);
         recommended_tv_allcity = byView(R.id.item_title_tv);
-
+        loadingIm = byView(R.id.recommend_loading_im);
     }
 
     private void getHeaderView() {
@@ -114,6 +116,10 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     protected void initDatas() {
         getHeaderView();
         recommended_vlv_editor.addHeaderView(headerview);
+        AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
+        animationDrawable.start();
+
+
         set = new AnimatorSet();
         contentView = getActivity().findViewById(android.R.id.content);//获取根布局里的view
         itme_title_theme.setOnClickListener(this);

@@ -43,11 +43,12 @@
                 android:layout_height="150dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/account_cim_titlephoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/meinv" />
             </RelativeLayout>
 
             <TextView
