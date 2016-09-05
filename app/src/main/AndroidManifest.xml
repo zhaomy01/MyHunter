@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dllo.myhunter">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -10,8 +10,8 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:name=".app.MyApp"
@@ -21,48 +21,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:theme="@style/MainViewdialog">
+            android:name=".ui.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/MainViewdialog"/>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
-        <activity android:name=".ui.activity.BreadTravelActivity"/>
-        <activity android:name=".ui.activity.AsAHunterActivity"/>
-        <activity android:name=".ui.activity.RecommendWebViewActivity"/>
-        <activity android:name=".ui.activity.SettingActivity"/>
-        <activity android:name=".ui.activity.AccountSettingActivity"/>
-        <activity android:name=".ui.activity.DialogActivity"
-            android:theme="@style/dialog"/>
-        <activity android:name=".ui.activity.CommentWebViewActivity"/>
-        <activity android:name=".ui.activity.FoundActiveActivity"/>
+        <activity android:name=".ui.activity.BreadTravelActivity" />
+        <activity android:name=".ui.activity.AsAHunterActivity" />
+        <activity android:name=".ui.activity.RecommendWebViewActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.AccountSettingActivity" />
+        <activity
+            android:name=".ui.activity.DialogActivity"
+            android:theme="@style/dialog" />
+        <activity android:name=".ui.activity.CommentWebViewActivity" />
+        <activity android:name=".ui.activity.FoundActiveActivity" />
 
         <activity android:name=".ui.activity.NumberLoginActivity" />
         <activity android:name=".ui.activity.EmailLoginActivity" />
-        <activity android:name=".ui.activity.AllCityActivity"/>
-        <activity android:name=".ui.activity.AGlobeActivity"
-            android:theme="@style/login_act_backStyle"/>
+        <activity android:name=".ui.activity.AllCityActivity" />
+        <activity
+            android:name=".ui.activity.AGlobeActivity"
+            android:theme="@style/login_act_backStyle" />
         <activity android:name=".ui.activity.RecommendedJumpActivity" />
-        <activity android:name=".ui.activity.CollectionActivity"/>
+        <activity android:name=".ui.activity.CollectionActivity" />
 
-<!--系统相册-->
-        <uses-permission android:name="android.permission.CAMERA"/>
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-        <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+        <!--系统相册-->
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
             <intent-filter>
                 <data android:scheme="tencent100371282" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

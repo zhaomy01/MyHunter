@@ -29,7 +29,6 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.MyHolder> {
     private Context context;
     private List<FoundBean> data;
     private OnRecycleListenerInterface onRecycleListenerInterface;
-
     public static final int FIRST_STICKY_VIEW = 1;
     public static final int HAS_STICKY_VIEW = 2;
     public static final int NONE_STICKY_VIEW = 3;

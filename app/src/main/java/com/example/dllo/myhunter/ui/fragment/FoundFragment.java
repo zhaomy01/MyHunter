@@ -55,7 +55,6 @@ public class FoundFragment extends AbsBaseFragment {
         time = byView(R.id.found_tv_date_added);
         userName = byView(R.id.found_tv_username);
         titleImage = byView(R.id.found_cim_avatar_s);
-
         active = byView(R.id.found_im_active);
         loadingIm = byView(R.id.loading_im);
     }
@@ -68,7 +67,6 @@ public class FoundFragment extends AbsBaseFragment {
         // 加载之前的动画
         AnimationDrawable animationDrawable = (AnimationDrawable) loadingIm.getDrawable();
         animationDrawable.start();
-
 
         data = new ArrayList<>();
         foundAdapter = new FoundAdapter(context);
