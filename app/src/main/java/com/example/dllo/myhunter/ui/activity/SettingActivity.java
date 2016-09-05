@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.example.dllo.myhunter.R;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.tencent.qq.QQ;
+
 /**
  * 设置界面
  */
@@ -58,6 +62,11 @@ public class SettingActivity extends AbsBaseActivity implements View.OnClickList
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                // 取消第三方登录
+                ShareSDK.initSDK(getApplicationContext());
+                Platform qq = ShareSDK.getPlatform(QQ.NAME);
+                qq.removeAccount();
+                // 清除缓存
                 SharedPreferences sp = getSharedPreferences("MyHunter",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.clear();
