@@ -9,13 +9,12 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.example.dllo.myhunter.R;
 import com.example.dllo.myhunter.model.bean.RecommendedBean;
@@ -72,7 +71,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private View headerview;
     private  ImageView loadingIm;
 
-
     @Override
     protected int setLayout() {
         return R.layout.fragment_recommended;
@@ -104,7 +102,6 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
         recommmended_starHunter_hlv = (RecyclerView) headerview.findViewById(R.id.star_hunter_hlv);
         recommended_story_hlv = (RecyclerView) headerview.findViewById(R.id.story_hunter_hlv);
     }
-
 
     @Override
     public void onDestroy() {
@@ -312,7 +309,7 @@ public class RecommendedFragment extends AbsBaseFragment implements View.OnClick
     private void addPonints() {
         //有多少轮播图加多少个小点
         for (int i = 0; i < imgUrl.size(); i++) {
-            ImageView pointIv = new ImageView(getActivity());
+            ImageView pointIv = new ImageView(context);
             //设置小点的padding
             pointIv.setPadding(10, 10, 10, 10);
             //设置小点的宽和高

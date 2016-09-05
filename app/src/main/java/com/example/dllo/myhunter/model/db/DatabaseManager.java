@@ -53,7 +53,6 @@ public class DatabaseManager {
         return liteOrm.<T>query(new QueryBuilder(clas).where(field + "=?", values).limit(start, length));
     }
 
-
     /**
      * 删除某条数据
      * @param cla
